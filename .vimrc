@@ -162,3 +162,8 @@ let g:Tex_ViewRule_pdf = 'xdg-open'
 "let g:Tex_ViewRule_pdf = 'firefox -new-window'
 "let g:Tex_ViewRule_pdf = 'chromium --new-window'
 "}}}
+
+"NERDTree設定 {{{
+"起動時NERDTree起動
+autocmd vimenter * NERDTree
+"}}}

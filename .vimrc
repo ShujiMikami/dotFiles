@@ -1,3 +1,26 @@
+"プラグイン設定 {{{
+set nocompatible
+filetype off
+
+"Windows用でも, .vimを読むように設定上書き
+set rtp+=~/.vim
+
+set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/nerdtree
+set rtp+=~/.vim/bundle/vim-latex
+set rtp+=~/.vim/bundle/lightline.vim
+
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-latex/vim-latex'
+call vundle#end()
+"}}}
+
+filetype plugin indent on
+
 "基本設定-{{{
 "カラースキームをmolokaiにする
 colorscheme molokai
@@ -77,53 +100,6 @@ set foldmethod=marker
 "}}}
 "
 "
-"プラグイン設定----------------
-"NeoBundle設定 {{{
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-"NeoBundle更新
-NeoBundleFetch 'Shougo/neobundle.vim'
-"}}}
-
-"プラグイン {{{
-"ステータスライン表示強化
-NeoBundle 'itchyny/lightline.vim'
-
-"HTML5インデント, カラー対応
-NeoBundle 'othree/html5.vim'
-
-"java scriptインデント,カラー対応
-NeoBundle 'jelera/vim-javascript-syntax'
-
-"NeoComplete
-NeoBundle 'Shougo/neocomplete.vim'
-
-"vimproc
-NeoBundle 'Shougo/vimproc.vim'
-
-"nerdtree
-NeoBundle 'scrooloose/nerdtree'
-
-NeoBundle 'vim-latex/vim-latex'
-"}}}
-
-"NeoBundle設定完了 {{{
-call neobundle#end()
-
-"ファイルタイプ自動検出,インデント有効
-filetype plugin indent on
-
-"プラグイン更新チェック
-NeoBundleCheck
-
-"}}}
 
 "" Vim-LaTeX{{{
 ""
@@ -163,9 +139,3 @@ let g:Tex_ViewRule_pdf = 'xdg-open'
 "let g:Tex_ViewRule_pdf = 'chromium --new-window'
 "}}}
 
-"NERDTree設定 {{{
-"隠しファイルをデフォルトで表示
-let NERDTreeShowHidden = 1
-"起動時NERDTree起動
-autocmd vimenter * NERDTree
-"}}}

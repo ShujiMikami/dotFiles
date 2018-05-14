@@ -1,2 +1,6 @@
-.vim/bundle/.neobundle
-NeoBundle.lock
+..vimrc.un~
+.vimrc~
+.setup_win.bat.un~
+.setup_win.bat.swp
+setup_win.bat~
+.vim/.netrwhist

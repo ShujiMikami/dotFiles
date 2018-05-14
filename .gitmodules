@@ -1,3 +1,15 @@
 [submodule ".vim/bundle/Vundle.vim"]
   path = .vim/bundle/Vundle.vim
   url = https://github.com/VundleVim/Vundle.vim.git
+
+[submodule ".vim/bundle/lightline.vim"]
+  path = .vim/bundle/lightline.vim
+  url = https://github.com/itchyny/lightline.vim.git
+
+[submodule ".vim/bundle/nerdtree"]
+  path = .vim/bundle/nerdtree
+  url = https://github.com/scrooloose/nerdtree.git
+
+[submodule ".vim/vim-latex"]
+  path = .vim/bundle/vim-latex
+  url = https://github.com/vim-latex/vim-latex.git

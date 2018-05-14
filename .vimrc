@@ -5,18 +5,18 @@ filetype off
 "Windows用でも, .vimを読むように設定上書き
 set rtp+=~/.vim
 
-set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/nerdtree
 set rtp+=~/.vim/bundle/vim-latex
 set rtp+=~/.vim/bundle/lightline.vim
 
 
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-latex/vim-latex'
-call vundle#end()
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'itchyny/lightline.vim'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'vim-latex/vim-latex'
+"call vundle#end()
 "}}}
 
 filetype plugin indent on

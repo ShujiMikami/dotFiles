@@ -30,7 +30,7 @@ set number
 
 "日本語設定
 set encoding=utf-8
-set fileencodings=iso-2022.jp,cp932,sjis,euc-jp,utf-8
+set fileencodings=iso-2022.jp,sjis,euc-jp,utf-8
 
 "強調表示有効
 syntax on

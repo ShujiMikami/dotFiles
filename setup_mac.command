@@ -13,4 +13,8 @@ ln -s $SCRIPT_DIR/.gvimrc .gvimrc
 # .vimを.vimの名前でHOMEにシンボリックリンク
 ln -s $SCRIPT_DIR/.vim .vim
 
+# .bashrcを.bashrcの名前でHOMEにシンボリックリンク
+ln -s $SCRIPT_DIR/.bashrc .bashrc
 
+# .bash_profileを.bash_profileの名前でHOMEにシンボリックリンク
+ln -s $SCRIPT_DIR/.bash_profile .bash_profile

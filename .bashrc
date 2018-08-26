@@ -8,3 +8,5 @@ alias ls='ls -FG'
 alias ll='ls -alFG'
 
 export PATH=$PATH:/Applications
+export PATH=$PATH:$HOME/.pyenv/shims
+eval "$(pyenv init -)"

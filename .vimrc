@@ -92,11 +92,9 @@ set foldmethod=marker
 "}}}
 
 "plantuml-syntax {{{
-if has('win32') || has('win64')
+if has("win32") || has("win64")
   au FileType plantuml command! OpenUml :!start -a "Google Chrome" % 
-endif
-
-if has('mac')
+else
   au FileType plantuml command! OpenUml :!open -a "Google Chrome" % 
 endif
 "}}}

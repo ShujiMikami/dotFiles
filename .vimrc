@@ -5,12 +5,9 @@ filetype off
 "Windows用でも, .vimを読むように設定上書き
 set rtp+=~/.vim
 
-"set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/nerdtree
 set rtp+=~/.vim/bundle/vim-latex
 set rtp+=~/.vim/bundle/lightline.vim
-set rtp+=~/.vim/bundle/previm
-set rtp+=~/.vim/bundle/open-browser.vim
+set rtp+=~/.vim/bundle/plantuml-syntax
 
 "}}}
 
@@ -93,15 +90,19 @@ set t_Co=256
 set foldmethod=marker
 
 "}}}
-"
-"
-"let g:previm_open_cmd = 'open -a Safari'
-augroup PrevimSettings
-  autocmd!
-  autocmd BufNewFile,BufRead *.{plantuml,md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
+
+"plantuml-syntax {{{
+if has('win32') || has('win64')
+  au FileType plantuml command! OpenUml :!start -a "Google Chrome" % 
+endif
+
+if has('mac')
+  au FileType plantuml command! OpenUml :!open -a "Google Chrome" % 
+endif
+"}}}
+
 "" Vim-LaTeX{{{
-""
+
 filetype plugin on
 filetype indent on
 set shellslash

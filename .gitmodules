@@ -13,3 +13,7 @@
 [submodule ".vim/vim-latex"]
   path = .vim/bundle/vim-latex
   url = https://github.com/vim-latex/vim-latex.git
+[submodule ".vim/bundle/previm"]
+	path = .vim/bundle/previm
+	url = https://github.com/kazuph/previm.git
+	branch = feature/add-plantuml-plugin

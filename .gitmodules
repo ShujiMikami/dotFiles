@@ -17,3 +17,6 @@
 	path = .vim/bundle/previm
 	url = https://github.com/kazuph/previm.git
 	branch = feature/add-plantuml-plugin
+[submodule ".vim/bundle/open-browser.vim"]
+	path = .vim/bundle/open-browser.vim
+	url = https://github.com/tyru/open-browser.vim.git

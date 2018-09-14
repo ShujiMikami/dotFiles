@@ -9,14 +9,9 @@ set rtp+=~/.vim
 set rtp+=~/.vim/bundle/nerdtree
 set rtp+=~/.vim/bundle/vim-latex
 set rtp+=~/.vim/bundle/lightline.vim
+set rtp+=~/.vim/bundle/previm
+set rtp+=~/.vim/bundle/open-browser.vim
 
-
-"call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'itchyny/lightline.vim'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'vim-latex/vim-latex'
-"call vundle#end()
 "}}}
 
 filetype plugin indent on
@@ -100,7 +95,11 @@ set foldmethod=marker
 "}}}
 "
 "
-
+"let g:previm_open_cmd = 'open -a Safari'
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{plantuml,md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
 "" Vim-LaTeX{{{
 ""
 filetype plugin on

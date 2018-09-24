@@ -89,14 +89,14 @@ set t_Co=256
 "マーカー文字列で折りたたみ埋め込み
 set foldmethod=marker
 
+"初回起動時の場所をユーザーホームとする"
+cd ~
 "}}}
 
 "plantuml-syntax {{{
-if has('win32') || has('win64')
+if has("win32") || has("win64")
   au FileType plantuml command! OpenUml :!start -a "Google Chrome" % 
-endif
-
-if has('mac')
+else
   au FileType plantuml command! OpenUml :!open -a "Google Chrome" % 
 endif
 "}}}

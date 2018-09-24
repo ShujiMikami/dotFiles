@@ -89,6 +89,8 @@ set t_Co=256
 "マーカー文字列で折りたたみ埋め込み
 set foldmethod=marker
 
+"初回起動時の場所をユーザーホームとする"
+cd ~
 "}}}
 
 "plantuml-syntax {{{

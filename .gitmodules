@@ -12,3 +12,6 @@
 [submodule ".vim/bundle/vimtex"]
 	path = .vim/bundle/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/bundle/vim-quickrun"]
+	path = .vim/bundle/vim-quickrun
+	url = https://github.com/thinca/vim-quickrun.git

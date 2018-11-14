@@ -5,7 +5,7 @@ filetype off
 "Windows用でも, .vimを読むように設定上書き
 set rtp+=~/.vim
 
-set rtp+=~/.vim/bundle/vim-latex
+"set rtp+=~/.vim/bundle/vim-latex
 set rtp+=~/.vim/bundle/lightline.vim
 set rtp+=~/.vim/bundle/plantuml-syntax
 

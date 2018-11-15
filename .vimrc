@@ -102,4 +102,4 @@ else
 endif
 "}}}
 
-
+let g:quickrun_config = {}

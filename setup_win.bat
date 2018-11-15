@@ -21,3 +21,5 @@ mklink %HOMEPATH%\.gvimrc %CURDIR%.gvimrc
 rem .vimをvimfilesの名前でHOMEにシンボリックリンク
 mklink /D %HOMEPATH%\.vim %CURDIR%.vim
 
+rem .latexmkrcをHOMEにシンボリックリンク
+mklink /D %HOMEPATH%\.latexmkrc %CURDIR%.latexmkrc

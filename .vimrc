@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/plantuml-syntax
 set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
-set rtp+=~/.vim/bundle/YouCompleteMe
+set rtp+=~/.vim/bundle/neocomplete.vim
 "}}}
 
 filetype plugin indent on

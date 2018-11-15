@@ -15,6 +15,9 @@ set rtp+=~/.vim/bundle/vimproc.vim
 
 filetype plugin indent on
 
+"オムニ補完ON
+set omnifunc=syntaxcomplete#Complete
+
 "基本設定-{{{
 "カラースキームをmolokaiにする
 colorscheme molokai

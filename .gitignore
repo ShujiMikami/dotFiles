@@ -12,3 +12,5 @@ setup_win.bat~
 Iconr
 ..gvimrc.un~
 .gvimrc~
+.vim/ftplugin/.tex_quickrun.vim.un~
+.vim/ftplugin/tex_quickrun.vim~

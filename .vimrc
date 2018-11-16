@@ -107,7 +107,7 @@ else
 endif
 "}}}
 
-"vim^quickrun {{{
+"vim-quickrun {{{
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 
 let g:quickrun_config._ = {
@@ -194,4 +194,6 @@ let g:quickrun_config._ = {
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" 補完候補が表示されている場合は確定。そうでない場合は改行
+  inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 "}}}

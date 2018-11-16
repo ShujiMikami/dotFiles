@@ -5,7 +5,6 @@ filetype off
 "Windows用でも, .vimを読むように設定上書き
 set rtp+=~/.vim
 
-"set rtp+=~/.vim/bundle/vim-latex
 set rtp+=~/.vim/bundle/lightline.vim
 set rtp+=~/.vim/bundle/plantuml-syntax
 set rtp+=~/.vim/bundle/vimtex
@@ -14,13 +13,14 @@ set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
 "}}}
 
+"共通設定-{{{
+"ファイルタイプ検出, インデックス有効
 filetype plugin indent on
 
 "オムニ補完ON
 set omnifunc=syntaxcomplete#Complete
 
-"基本設定-{{{
-"カラースキームをmolokaiにする
+カラースキームをmolokaiにする
 colorscheme molokai
 
 "行番号表示
@@ -40,7 +40,6 @@ set autoindent
 set tabstop=2
 
 "移動量2文字
-"
 set shiftwidth=2
 
 "C言語スタイルのインデント有効
@@ -105,6 +104,11 @@ if has("win32") || has("win64")
 else
   au FileType plantuml command! OpenUml :! open -a "Google Chrome" % 
 endif
+"}}}
+
+"vimtex {{{
+"texのファイルタイプをlatexで認識
+let g:tex_flavor = "latex"
 "}}}
 
 "vim-quickrun {{{

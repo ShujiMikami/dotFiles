@@ -20,7 +20,7 @@ filetype plugin indent on
 "オムニ補完ON
 set omnifunc=syntaxcomplete#Complete
 
-カラースキームをmolokaiにする
+"カラースキームをmolokaiにする
 colorscheme molokai
 
 "行番号表示

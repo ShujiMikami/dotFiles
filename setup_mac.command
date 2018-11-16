@@ -18,3 +18,6 @@ ln -s $SCRIPT_DIR/.bashrc .bashrc
 
 # .bash_profileを.bash_profileの名前でHOMEにシンボリックリンク
 ln -s $SCRIPT_DIR/.bash_profile .bash_profile
+
+# .latexmkrcをシンボリックリンク
+ln -s $SCRIPT_DIR/.latexmkrc .latexmkrc

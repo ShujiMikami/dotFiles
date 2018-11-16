@@ -11,6 +11,7 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
+set rtp+=~/.vim/bundle/vim-clang
 "}}}
 
 "共通設定-{{{
@@ -192,7 +193,7 @@ let g:quickrun_config._ = {
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+ " let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
   "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   
   " For perlomni.vim setting.
@@ -200,4 +201,27 @@ let g:quickrun_config._ = {
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {} 
+  endif
+  let g:neocomplete#force_overwrite_completefunc = 1
+  let g:neocomplete#force_omni_input_patterns.c =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 "}}}
+"
+" 'justmao945/vim-clang' {{{
+
+" default 'longest' can not work with neocomplete
+
+
+let g:clang_c_options = '-std=c11'
+let g:clang_cpp_options = '
+  \ -std=c++1z 
+  \ -stdlib=libc++ 
+  \ -pedantic-errors
+  \ '
+
+" }}}

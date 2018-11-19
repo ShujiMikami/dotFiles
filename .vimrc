@@ -17,6 +17,9 @@ set rtp+=~/.vim/bundle/neocomplete.vim
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
 
+"TABでのメニュー補完ON
+set wildmenu
+
 "オムニ補完ON
 set omnifunc=syntaxcomplete#Complete
 

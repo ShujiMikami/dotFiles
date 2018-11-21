@@ -11,6 +11,7 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
+set rtp+=~/.vim/bundle/vim-fugitive
 "}}}
 
 "共通設定-{{{

@@ -13,6 +13,7 @@ set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
 set rtp+=~/.vim/bundle/vim-fugitive
 set rtp+=~/.vim/bundle/gitv
+set rtp+=~/.vim/bundle/jedi-vim
 "}}}
 
 "共通設定-{{{

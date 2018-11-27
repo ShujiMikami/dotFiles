@@ -233,8 +233,9 @@ let g:quickrun_config._ = {
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 
 "}}}
-"
 
+"python{{{
 if has("win32") || has("win64")
   py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
 endif
+"}}}

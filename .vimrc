@@ -234,4 +234,7 @@ let g:quickrun_config._ = {
 
 "}}}
 "
-py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
+
+if has("win32") || has("win64")
+  py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
+endif

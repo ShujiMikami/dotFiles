@@ -221,9 +221,6 @@ let g:quickrun_config._ = {
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-  let g:jedi#completions_enabled = 0
-  let g:jedi#auto_vim_configuration = 0
-
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
@@ -234,6 +231,11 @@ let g:quickrun_config._ = {
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 
+"}}}
+
+"jedi{{{
+  let g:jedi#completions_enabled = 0
+  let g:jedi#auto_vim_configuration = 0
 "}}}
 
 "python{{{

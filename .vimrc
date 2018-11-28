@@ -11,11 +11,17 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
+set rtp+=~/.vim/bundle/jedi-vim
+set rtp+=~/.vim/bundle/vim-fugitive
+set rtp+=~/.vim/bundle/gitv
 "}}}
 
 "共通設定-{{{
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
+
+"TABでのメニュー補完ON
+set wildmenu
 
 "オムニ補完ON
 set omnifunc=syntaxcomplete#Complete
@@ -96,6 +102,19 @@ set foldmethod=marker
 
 "初回起動時の場所をユーザーホームとする"
 cd ~
+"}}}
+
+"キーリマップ{{{
+"ウインドウ移動をCTRLのみで
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap > <C-w>>
+nnoremap < <C-w><
+nnoremap + <C-w>+
+nnoremap - <C-w>-
 "}}}
 
 "plantuml-syntax {{{
@@ -183,12 +202,15 @@ let g:quickrun_config._ = {
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType python setlocal omnifunc=jedi#completions
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   
   " Enable heavy omni completion.
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
+
+  " For latexomni.vim setting
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
@@ -198,6 +220,26 @@ let g:quickrun_config._ = {
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+
+  " For pythonomni setting
+  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+
+"}}}
+
+"jedi{{{
+  let g:jedi#completions_enabled = 0
+  let g:jedi#auto_vim_configuration = 0
+"}}}
+
+"python{{{
+if has("win32") || has("win64")
+  py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
+endif
 "}}}

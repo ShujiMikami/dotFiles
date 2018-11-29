@@ -30,3 +30,6 @@
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule ".vim/bundle/vim-clang"]
+	path = .vim/bundle/vim-clang
+	url = https://github.com/justmao945/vim-clang.git

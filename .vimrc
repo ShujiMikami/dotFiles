@@ -13,6 +13,7 @@ set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
 set rtp+=~/.vim/bundle/vim-clang
 set rtp+=~/.vim/bundle/neoinclude.vim
+set rtp+=~/.vim/bundle/neco-syntax
 "}}}
 
 "共通設定-{{{

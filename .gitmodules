@@ -24,3 +24,6 @@
 [submodule ".vim/bundle/vim-clang"]
 	path = .vim/bundle/vim-clang
 	url = https://github.com/justmao945/vim-clang.git
+[submodule ".vim/bundle/neoinclude.vim"]
+	path = .vim/bundle/neoinclude.vim
+	url = https://github.com/Shougo/neoinclude.vim

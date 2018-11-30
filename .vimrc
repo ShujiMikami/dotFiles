@@ -11,6 +11,9 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
+set rtp+=~/.vim/bundle/jedi-vim
+set rtp+=~/.vim/bundle/vim-fugitive
+set rtp+=~/.vim/bundle/gitv
 set rtp+=~/.vim/bundle/vim-clang
 set rtp+=~/.vim/bundle/neoinclude.vim
 set rtp+=~/.vim/bundle/neco-syntax
@@ -20,8 +23,11 @@ set rtp+=~/.vim/bundle/neco-syntax
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
 
+"TABでのメニュー補完ON
+set wildmenu
+
 "オムニ補完ON
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 "カラースキームをmolokaiにする
 colorscheme molokai
@@ -31,7 +37,7 @@ set number
 
 "日本語設定
 set encoding=utf-8
-set fileencodings=iso-2022.jp,sjis,euc-jp,utf-8
+set fileencodings=utf-8,sjis,iso-2022.jp,euc-jp
 
 "強調表示有効
 syntax on
@@ -99,6 +105,19 @@ set foldmethod=marker
 
 "初回起動時の場所をユーザーホームとする"
 cd ~
+"}}}
+
+"キーリマップ{{{
+"ウインドウ移動をCTRLのみで
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap > <C-w>>
+nnoremap < <C-w><
+nnoremap + <C-w>+
+nnoremap - <C-w>-
 "}}}
 
 "plantuml-syntax {{{
@@ -178,7 +197,7 @@ let g:quickrun_config._ = {
   " Shell like behavior(not recommended).
   "set completeopt+=longest
   "let g:neocomplete#enable_auto_select = 1
-  "let g:neocomplete#disable_auto_complete = 1
+ " let g:neocomplete#disable_auto_complete = 1
   "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
   
   " Enable omni completion.
@@ -186,38 +205,70 @@ let g:quickrun_config._ = {
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType python setlocal omnifunc=jedi#completions
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   
   " Enable heavy omni completion.
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
+
+  " For latexomni.vim setting
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
- " let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  
+"  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+
+  " For pythonomni setting
+  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+  let g:neocomplete#force_overwrite_completefunc = 1
+"  let g:neocomplete#force_omni_input_patterns.c =
+"        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+"  let g:neocomplete#force_omni_input_patterns.cpp =
+"        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.c = '.*'
+  let g:neocomplete#force_omni_input_patterns.cpp = '.*'
+ 
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {} 
-  endif
-  let g:neocomplete#force_overwrite_completefunc = 1
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"}}}
+
+"jedi{{{
+  let g:jedi#completions_enabled = 0
+  let g:jedi#auto_vim_configuration = 0
+"}}}
+
+"python{{{
+if has("win32") || has("win64")
+  py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
+endif
 "}}}
 "
 " 'justmao945/vim-clang' {{{
 
 " default 'longest' can not work with neocomplete
 
+let g:clang_auto = 0
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
+
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+let g:clang_exec = 'clang'
+let g:clang_format_exec = 'clang-format'
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '

@@ -6,6 +6,8 @@ fi
 
 alias ls='ls -FG'
 alias ll='ls -alFG'
+alias vi='vim'
+alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 
 export PATH=$PATH:/Applications
 export PATH=$PATH:$HOME/.pyenv/shims

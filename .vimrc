@@ -27,7 +27,7 @@ filetype plugin indent on
 set wildmenu
 
 "オムニ補完ON
-"set omnifunc=syntaxcomplete#Complete
+set omnifunc=syntaxcomplete#Complete
 
 "カラースキームをmolokaiにする
 colorscheme molokai
@@ -219,6 +219,7 @@ let g:quickrun_config._ = {
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
@@ -236,8 +237,8 @@ let g:quickrun_config._ = {
 "        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "  let g:neocomplete#force_omni_input_patterns.cpp =
 "        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.c = '.*'
-  let g:neocomplete#force_omni_input_patterns.cpp = '.*'
+"  let g:neocomplete#force_omni_input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#force_omni_input_patterns.cpp = '.*'
  
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"

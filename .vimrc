@@ -15,6 +15,8 @@ set rtp+=~/.vim/bundle/jedi-vim
 set rtp+=~/.vim/bundle/vim-fugitive
 set rtp+=~/.vim/bundle/gitv
 set rtp+=~/.vim/bundle/vim-clang
+set rtp+=~/.vim/bundle/neoinclude.vim
+set rtp+=~/.vim/bundle/neco-syntax
 "}}}
 
 "共通設定-{{{
@@ -195,7 +197,7 @@ let g:quickrun_config._ = {
   " Shell like behavior(not recommended).
   "set completeopt+=longest
   "let g:neocomplete#enable_auto_select = 1
-  "let g:neocomplete#disable_auto_complete = 1
+ " let g:neocomplete#disable_auto_complete = 1
   "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
   
   " Enable omni completion.
@@ -215,9 +217,10 @@ let g:quickrun_config._ = {
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
- " let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  
+"  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
@@ -230,11 +233,13 @@ let g:quickrun_config._ = {
   " For pythonomni setting
   let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
   let g:neocomplete#force_overwrite_completefunc = 1
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-"
+"  let g:neocomplete#force_omni_input_patterns.c =
+"        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+"  let g:neocomplete#force_omni_input_patterns.cpp =
+"        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"  let g:neocomplete#force_omni_input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#force_omni_input_patterns.cpp = '.*'
+ 
 " 補完候補が表示されている場合は確定。そうでない場合は改行
   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 
@@ -255,6 +260,16 @@ endif
 
 " default 'longest' can not work with neocomplete
 
+let g:clang_auto = 0
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
+
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+let g:clang_exec = 'clang'
+let g:clang_format_exec = 'clang-format'
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '

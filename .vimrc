@@ -25,6 +25,9 @@ set rtp+=~/.vim/bundle/async.vim
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
 
+"AutoChDir
+set autochdir
+
 "TABでのメニュー補完ON
 set wildmenu
 

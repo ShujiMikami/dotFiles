@@ -25,6 +25,9 @@ set rtp+=~/.vim/bundle/async.vim
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
 
+"コマンドを見せる
+set showcmd
+
 "AutoChDir
 set autochdir
 
@@ -123,6 +126,10 @@ nnoremap > <C-w>>
 nnoremap < <C-w><
 nnoremap + <C-w>+
 nnoremap - <C-w>-
+
+nnoremap [vim-lsp]  <Nop>
+nmap <Space>l [vim-lsp]
+nnoremap <silent> [vim-lsp]def : LspDefinition<CR>
 "}}}
 
 "plantuml-syntax {{{
@@ -285,9 +292,6 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_signs_error = { 'text' : 'X' }
 let g:lsp_signs_warning = { 'text' : '!!' } 
 
-nnoremap [vim-lsp]  <Nop>
-nmap <Space>l [vim-lsp]
-nnoremap <silent> [vim-lsp]def : LspDefinition<CR>
 "}}}
 
 " neoinclude{{{

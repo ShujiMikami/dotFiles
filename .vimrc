@@ -296,6 +296,11 @@ let g:lsp_signs_warning = { 'text' : '!!' }
 
 " neoinclude{{{
 let g:neoinclude#paths = {}
-let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\' . ',' . '/usr/include'
-let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
+if has('mac')
+  let g:neoinclude#paths.c = expand('%:h') . ','  . '/usr/include'
+  let g:neoinclude#paths.cpp = expand('%:h') . ','  . '/usr/include/c++'
+elseif
+  let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\'
+  let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
+endif
 " }}}

@@ -14,14 +14,19 @@ set rtp+=~/.vim/bundle/neocomplete.vim
 set rtp+=~/.vim/bundle/jedi-vim
 set rtp+=~/.vim/bundle/vim-fugitive
 set rtp+=~/.vim/bundle/gitv
-set rtp+=~/.vim/bundle/vim-clang
+"set rtp+=~/.vim/bundle/vim-clang
 set rtp+=~/.vim/bundle/neoinclude.vim
-set rtp+=~/.vim/bundle/neco-syntax
+"set rtp+=~/.vim/bundle/neco-syntax
+set rtp+=~/.vim/bundle/vim-lsp
+set rtp+=~/.vim/bundle/async.vim
 "}}}
 
 "共通設定-{{{
 "ファイルタイプ検出, インデックス有効
 filetype plugin indent on
+
+"AutoChDir
+set autochdir
 
 "TABでのメニュー補完ON
 set wildmenu
@@ -218,8 +223,10 @@ let g:quickrun_config._ = {
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+
+"  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
@@ -255,27 +262,36 @@ if has("win32") || has("win64")
   py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
 endif
 "}}}
-"
-" 'justmao945/vim-clang' {{{
 
-" default 'longest' can not work with neocomplete
+" vim-lsp{{{
+if executable('clangd')
+  augroup lsp_clangd
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'clangd',
+          \ 'cmd': {server_info->['clangd']},
+          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+          \ })
+    autocmd FileType c setlocal omnifunc=lsp#complete
+    autocmd FileType cpp setlocal omnifunc=lsp#complete
+    autocmd FileType objc setlocal omnifunc=lsp#complete
+    autocmd FileType objcpp setlocal omnifunc=lsp#complete
+  augroup end
+endif
 
-let g:clang_auto = 0
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 
-let g:clang_c_completeopt = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
+let g:lsp_signs_error = { 'text' : 'X' }
+let g:lsp_signs_warning = { 'text' : '!!' } 
 
-let g:clang_exec = 'clang'
-let g:clang_format_exec = 'clang-format'
+nnoremap [vim-lsp]  <Nop>
+nmap <Space>l [vim-lsp]
+nnoremap <silent> [vim-lsp]def : LspDefinition<CR>
+"}}}
 
-let g:clang_c_options = '-std=c11'
-let g:clang_cpp_options = '
-  \ -std=c++1z 
-  \ -stdlib=libc++ 
-  \ -pedantic-errors
-  \ '
-
+" neoinclude{{{
+let g:neoinclude#paths = {}
+let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\' . ',' . '/usr/include'
+let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
 " }}}

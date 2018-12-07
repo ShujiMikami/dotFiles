@@ -12,3 +12,5 @@ alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 export PATH=$PATH:/Applications
 export PATH=$PATH:$HOME/.pyenv/shims
 eval "$(pyenv init -)"
+
+export PATH=$PATH:/usr/local/Cellar/llvm/bin

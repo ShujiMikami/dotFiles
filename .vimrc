@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
-set rtp+=~/.vim/bundle/jedi-vim
+"set rtp+=~/.vim/bundle/jedi-vim
 set rtp+=~/.vim/bundle/vim-fugitive
 set rtp+=~/.vim/bundle/gitv
 "set rtp+=~/.vim/bundle/vim-clang
@@ -216,8 +216,8 @@ let g:quickrun_config._ = {
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType python setlocal omnifunc=jedi#completions
+"  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"  autocmd FileType python setlocal omnifunc=jedi#completions
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   
   " Enable heavy omni completion.
@@ -245,8 +245,8 @@ let g:quickrun_config._ = {
 
 
   " For pythonomni setting
-  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-  let g:neocomplete#force_overwrite_completefunc = 1
+ " let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+ " let g:neocomplete#force_overwrite_completefunc = 1
 "  let g:neocomplete#force_omni_input_patterns.c =
 "        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "  let g:neocomplete#force_omni_input_patterns.cpp =
@@ -260,8 +260,8 @@ let g:quickrun_config._ = {
 "}}}
 
 "jedi{{{
-  let g:jedi#completions_enabled = 0
-  let g:jedi#auto_vim_configuration = 0
+"  let g:jedi#completions_enabled = 0
+"  let g:jedi#auto_vim_configuration = 0
 "}}}
 
 "python{{{
@@ -271,6 +271,15 @@ endif
 "}}}
 
 " vim-lsp{{{
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+    autocmd FileType python setlocal omnifunc=lsp#complete
+endif
+
 if executable('clangd')
   augroup lsp_clangd
     autocmd!
@@ -297,5 +306,5 @@ let g:lsp_signs_warning = { 'text' : '!!' }
 " neoinclude{{{
 let g:neoinclude#paths = {}
 let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\' . ',' . '/usr/include'
-let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
+let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++\3.4.5'
 " }}}

@@ -219,6 +219,7 @@ let g:quickrun_config._ = {
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType python setlocal omnifunc=jedi#completions
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType plantuml setlocal omnifunc=syntaxcomplete#Complete
   
   " Enable heavy omni completion.
   if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -233,6 +234,7 @@ let g:quickrun_config._ = {
   let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 
+  let g:neocomplete#sources#omni#input_patterns.plantuml = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.

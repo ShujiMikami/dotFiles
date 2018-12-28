@@ -51,3 +51,6 @@
 [submodule ".vim/bundle/asyncomplete-lsp.vim"]
 	path = .vim/bundle/asyncomplete-lsp.vim
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule ".vim/bundle/vim-lsp-cquery"]
+	path = .vim/bundle/vim-lsp-cquery
+	url = https://github.com/pdavydov108/vim-lsp-cquery.git

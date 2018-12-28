@@ -243,7 +243,7 @@ let g:quickrun_config._ = {
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.cpp = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
@@ -314,18 +314,19 @@ if executable('cquery')
        \ 'cmd': {server_info->['cquery']},
        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
        \ 'initialization_options': { 'cacheDirectory': 'C:\Users\mm07860\workspace\cache' },
-       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'ino'],
       \ })
     autocmd FileType c setlocal omnifunc=lsp#complete
     autocmd FileType cpp setlocal omnifunc=lsp#complete
     autocmd FileType objc setlocal omnifunc=lsp#complete
     autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    autocmd FileType arduino setlocal omnifunc=lsp#complete
   augroup end
 endif
 
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-
+let g:asyncomplete_completion_delay = 10
 let g:lsp_signs_error = { 'text' : 'X' }
 let g:lsp_signs_warning = { 'text' : '!!' } 
 

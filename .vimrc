@@ -309,7 +309,6 @@ endif
 if executable('cquery')
   augroup lsp_cquery
     autocmd!
-    
     autocmd User lsp_setup call lsp#register_server({
        \ 'name': 'cquery',
        \ 'cmd': {server_info->['cquery']},
@@ -336,4 +335,12 @@ let g:lsp_signs_warning = { 'text' : '!!' }
 let g:neoinclude#paths = {}
 let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\' . ',' . '/usr/include'
 let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++\3.4.5'
+" }}}
+"
+" asyncomplete.vim {{{
+" remove duplicates
+let g:asyncomplete_remove_duplicates = 1
+
+"auto close preview window
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " }}}

@@ -18,7 +18,8 @@ set rtp+=~/.vim/bundle/gitv
 set rtp+=~/.vim/bundle/neoinclude.vim
 "set rtp+=~/.vim/bundle/neco-syntax
 set rtp+=~/.vim/bundle/vim-lsp
-set rtp+=~/.vim/bundle/async.vim
+"set rtp+=~/.vim/bundle/async.vim
+set rtp+=~/.vim/bundle/asyncomplete.vim
 "}}}
 
 "共通設定-{{{
@@ -29,7 +30,10 @@ filetype plugin indent on
 set showcmd
 
 "AutoChDir
-set autochdir
+"set autochdir
+
+"下に分割
+set splitbelow
 
 "TABでのメニュー補完ON
 set wildmenu
@@ -130,6 +134,13 @@ nnoremap - <C-w>-
 nnoremap [vim-lsp]  <Nop>
 nmap <Space>l [vim-lsp]
 nnoremap <silent> [vim-lsp]def : LspDefinition<CR>
+
+nnoremap [PlatformIO]  <Nop>
+nmap <Space>p [PlatformIO]
+nnoremap <silent> [PlatformIO]run : term platformio run<CR>
+nnoremap <silent> [PlatformIO]wr : term platformio run --target upload<CR>
+nnoremap <silent> [PlatformIO]cl : term platformio run --target clean<CR>
+nnoremap <silent> [PlatformIO]sm : term platformio device monitor<CR> 
 "}}}
 
 "plantuml-syntax {{{
@@ -230,9 +241,9 @@ let g:quickrun_config._ = {
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
-
+  let g:neocomplete#sources#omni#input_patterns.cpp = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.

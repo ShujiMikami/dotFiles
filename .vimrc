@@ -18,8 +18,9 @@ set rtp+=~/.vim/bundle/gitv
 set rtp+=~/.vim/bundle/neoinclude.vim
 "set rtp+=~/.vim/bundle/neco-syntax
 set rtp+=~/.vim/bundle/vim-lsp
-"set rtp+=~/.vim/bundle/async.vim
+set rtp+=~/.vim/bundle/async.vim
 set rtp+=~/.vim/bundle/asyncomplete.vim
+set rtp+=~/.vim/bundle/asyncomplete-lsp.vim
 "}}}
 
 "共通設定-{{{
@@ -175,7 +176,7 @@ let g:quickrun_config._ = {
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
   " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_at_startup = 0
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
   " Set minimum syntax keyword length.
@@ -243,7 +244,7 @@ let g:quickrun_config._ = {
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.

@@ -21,6 +21,7 @@ set rtp+=~/.vim/bundle/vim-lsp
 set rtp+=~/.vim/bundle/async.vim
 set rtp+=~/.vim/bundle/asyncomplete.vim
 set rtp+=~/.vim/bundle/asyncomplete-lsp.vim
+set rtp+=~/.vim/bundle/vim-lsp-cquery
 "}}}
 
 "共通設定-{{{
@@ -314,13 +315,15 @@ if executable('cquery')
        \ 'cmd': {server_info->['cquery']},
        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
        \ 'initialization_options': { 'cacheDirectory': 'C:\Users\mm07860\workspace\cache' },
-       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'ino'],
+       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'h', 'hpp'],
       \ })
     autocmd FileType c setlocal omnifunc=lsp#complete
     autocmd FileType cpp setlocal omnifunc=lsp#complete
     autocmd FileType objc setlocal omnifunc=lsp#complete
     autocmd FileType objcpp setlocal omnifunc=lsp#complete
     autocmd FileType arduino setlocal omnifunc=lsp#complete
+    autocmd FileType h setlocal omnifunc=lsp#complete
+    autocmd FileType hpp setlocal omnifunc=lsp#complete
   augroup end
 endif
 

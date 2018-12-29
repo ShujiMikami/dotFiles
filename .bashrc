@@ -16,3 +16,5 @@ eval "$(pyenv init -)"
 export PATH=$PATH:/usr/local/Cellar/llvm/bin
 export PATH=$PATH:$HOME/.platformio/penv/bin
 export PATH=$PATH:$HOME/cquery/build/release/bin
+
+alias pioviminit='platformio init --ide vim'

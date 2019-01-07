@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/vimtex
 set rtp+=~/.vim/bundle/vim-quickrun
 set rtp+=~/.vim/bundle/vimproc.vim
 set rtp+=~/.vim/bundle/neocomplete.vim
-set rtp+=~/.vim/bundle/jedi-vim
+"set rtp+=~/.vim/bundle/jedi-vim
 set rtp+=~/.vim/bundle/vim-fugitive
 set rtp+=~/.vim/bundle/gitv
 "set rtp+=~/.vim/bundle/vim-clang
@@ -19,6 +19,9 @@ set rtp+=~/.vim/bundle/neoinclude.vim
 "set rtp+=~/.vim/bundle/neco-syntax
 set rtp+=~/.vim/bundle/vim-lsp
 set rtp+=~/.vim/bundle/async.vim
+set rtp+=~/.vim/bundle/asyncomplete.vim
+set rtp+=~/.vim/bundle/asyncomplete-lsp.vim
+set rtp+=~/.vim/bundle/vim-lsp-cquery
 "}}}
 
 "共通設定-{{{
@@ -29,7 +32,10 @@ filetype plugin indent on
 set showcmd
 
 "AutoChDir
-set autochdir
+"set autochdir
+
+"下に分割
+set splitbelow
 
 "TABでのメニュー補完ON
 set wildmenu
@@ -130,6 +136,13 @@ nnoremap - <C-w>-
 nnoremap [vim-lsp]  <Nop>
 nmap <Space>l [vim-lsp]
 nnoremap <silent> [vim-lsp]def : LspDefinition<CR>
+
+nnoremap [PlatformIO]  <Nop>
+nmap <Space>p [PlatformIO]
+nnoremap <silent> [PlatformIO]run : term platformio run<CR>
+nnoremap <silent> [PlatformIO]wr : term platformio run --target upload<CR>
+nnoremap <silent> [PlatformIO]cl : term platformio run --target clean<CR>
+nnoremap <silent> [PlatformIO]sm : term platformio device monitor<CR> 
 "}}}
 
 "plantuml-syntax {{{
@@ -164,7 +177,7 @@ let g:quickrun_config._ = {
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
   " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_at_startup = 0
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
   " Set minimum syntax keyword length.
@@ -216,8 +229,8 @@ let g:quickrun_config._ = {
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType python setlocal omnifunc=jedi#completions
+"  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"  autocmd FileType python setlocal omnifunc=jedi#completions
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   autocmd FileType plantuml setlocal omnifunc=syntaxcomplete#Complete
   
@@ -231,10 +244,10 @@ let g:quickrun_config._ = {
         \ g:vimtex#re#neocomplete
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
-
   let g:neocomplete#sources#omni#input_patterns.plantuml = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"  let g:neocomplete#sources#omni#input_patterns.c = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
+"  let g:neocomplete#sources#omni#input_patterns.cpp = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "  let g:neocomplete#sources#omni#input_patterns.arduino = '\%([a-z]\|_\|\w\%(\.\|->\)\)'
 "   let g:neocomplete#sources#omni#input_patterns.cpp = '.*' 
   " For perlomni.vim setting.
@@ -247,8 +260,8 @@ let g:quickrun_config._ = {
 
 
   " For pythonomni setting
-  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-  let g:neocomplete#force_overwrite_completefunc = 1
+ " let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+ " let g:neocomplete#force_overwrite_completefunc = 1
 "  let g:neocomplete#force_omni_input_patterns.c =
 "        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 "  let g:neocomplete#force_omni_input_patterns.cpp =
@@ -262,8 +275,8 @@ let g:quickrun_config._ = {
 "}}}
 
 "jedi{{{
-  let g:jedi#completions_enabled = 0
-  let g:jedi#auto_vim_configuration = 0
+"  let g:jedi#completions_enabled = 0
+"  let g:jedi#auto_vim_configuration = 0
 "}}}
 
 "python{{{
@@ -273,24 +286,52 @@ endif
 "}}}
 
 " vim-lsp{{{
-if executable('clangd')
-  augroup lsp_clangd
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+    autocmd FileType python setlocal omnifunc=lsp#complete
+endif
+
+"if executable('clangd')
+"  augroup lsp_clangd
+"    autocmd!
+"    autocmd User lsp_setup call lsp#register_server({
+"          \ 'name': 'clangd',
+"          \ 'cmd': {server_info->['clangd']},
+"          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"          \ })
+"    autocmd FileType c setlocal omnifunc=lsp#complete
+"    autocmd FileType cpp setlocal omnifunc=lsp#complete
+"    autocmd FileType objc setlocal omnifunc=lsp#complete
+"    autocmd FileType objcpp setlocal omnifunc=lsp#complete
+"  augroup end
+"endif
+if executable('cquery')
+  augroup lsp_cquery
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'clangd',
-          \ 'cmd': {server_info->['clangd']},
-          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-          \ })
+       \ 'name': 'cquery',
+       \ 'cmd': {server_info->['cquery']},
+       \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+       \ 'initialization_options': { 'cacheDirectory': 'C:\Users\mm07860\workspace\cache' },
+       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'h', 'hpp'],
+      \ })
     autocmd FileType c setlocal omnifunc=lsp#complete
     autocmd FileType cpp setlocal omnifunc=lsp#complete
     autocmd FileType objc setlocal omnifunc=lsp#complete
     autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    autocmd FileType arduino setlocal omnifunc=lsp#complete
+    autocmd FileType h setlocal omnifunc=lsp#complete
+    autocmd FileType hpp setlocal omnifunc=lsp#complete
   augroup end
 endif
 
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-
+let g:asyncomplete_completion_delay = 10
 let g:lsp_signs_error = { 'text' : 'X' }
 let g:lsp_signs_warning = { 'text' : '!!' } 
 
@@ -305,4 +346,12 @@ elseif
   let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\'
   let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
 endif
+" }}}
+"
+" asyncomplete.vim {{{
+" remove duplicates
+let g:asyncomplete_remove_duplicates = 1
+
+"auto close preview window
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " }}}

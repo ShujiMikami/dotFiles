@@ -31,10 +31,6 @@ if [ "`uname`" == "Darwin" ]; then
     export PATH=$PATH:$HOME/.pyenv/shims
     eval "$(pyenv init -)"
   fi
-elif [ "`uname`" == "Linux" ]; then
+elif [ -e "`uname`" == "Linux" ]; then
   #Linux用設定
 fi
-
-  
-
-

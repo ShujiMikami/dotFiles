@@ -6,11 +6,35 @@ fi
 
 alias ls='ls -FG'
 alias ll='ls -alFG'
+
+#vimコマンドを作成
 alias vi='vim'
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 
-export PATH=$PATH:/Applications
-export PATH=$PATH:$HOME/.pyenv/shims
-eval "$(pyenv init -)"
+if [ "`uname`" == "Darwin" ]; then
+  #MacOS用設定
 
-export PATH=$PATH:/usr/local/Cellar/llvm/bin
+  #ApplicationsをPATHに追加
+  export PATH=$PATH:/Applications
+  
+  #MacVimが入っていれば, こちらをalias起動する
+  if [ -e /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+  fi
+
+  #llvmが入っていればこれをPathに追加する
+  if [ -e /usr/local/Cellar/llvm/bin ]; then
+    export PATH=$PATH:/usr/local/Cellar/llvm/bin
+  fi
+
+  #pyenvが入っていればこれをPathに追加し, pyenvのpythonのバージョンにする
+  if [ -e $HOME/.pyenv/shims ]; then
+    export PATH=$PATH:$HOME/.pyenv/shims
+    eval "$(pyenv init -)"
+  fi
+elif [ "`uname`" == "Linux" ]; then
+  #Linux用設定
+fi
+
+  
+
+

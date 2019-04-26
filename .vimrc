@@ -177,7 +177,7 @@ let g:quickrun_config._ = {
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
   " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 0
+  let g:neocomplete#enable_at_startup = 1
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
   " Set minimum syntax keyword length.
@@ -342,7 +342,7 @@ let g:neoinclude#paths = {}
 if has('mac')
   let g:neoinclude#paths.c = expand('%:h') . ','  . '/usr/include'
   let g:neoinclude#paths.cpp = expand('%:h') . ','  . '/usr/include/c++'
-elseif
+else
   let g:neoinclude#paths.c = expand('%:h') . ',' . 'C:\MinGW\include\'
   let g:neoinclude#paths.cpp = expand('%:h') . ',' . 'C:\MinGW\include\c++'
 endif

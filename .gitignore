@@ -16,3 +16,6 @@ Iconr
 .vim/ftplugin/tex_quickrun.vim~
 .setup_mac.command.un~
 setup_mac.command~
+*.un~
+*.swp
+*.bashrc~

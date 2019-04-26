@@ -12,6 +12,7 @@ alias vi='vim'
 
 if [ "`uname`" == "Darwin" ]; then
   #MacOS用設定
+  echo "OSX setting"
 
   #ApplicationsをPATHに追加
   export PATH=$PATH:/Applications
@@ -31,6 +32,6 @@ if [ "`uname`" == "Darwin" ]; then
     export PATH=$PATH:$HOME/.pyenv/shims
     eval "$(pyenv init -)"
   fi
-elif [ -e "`uname`" == "Linux" ]; then
-  #Linux用設定
+elif [ "`uname`" == "Linux" ]; then
+  echo "Linux setting"
 fi

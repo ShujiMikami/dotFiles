@@ -6,32 +6,17 @@ fi
 
 alias ls='ls -FG'
 alias ll='ls -alFG'
-
-#vimコマンドを作成
 alias vi='vim'
 
-if [ "`uname`" == "Darwin" ]; then
-  #MacOS用設定
-  echo "OSX setting"
-
-  #ApplicationsをPATHに追加
+if [ "$HOSTNAME" = MacBookAir ]; then
+  echo "MacBookAir setting"
+  alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
   export PATH=$PATH:/Applications
-  
-  #MacVimが入っていれば, こちらをalias起動する
-  if [ -e /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-  fi
+  export PATH=$PATH:$HOME/.pyenv/shims
+  eval "$(pyenv init -)"
+fi
 
-  #llvmが入っていればこれをPathに追加する
-  if [ -e /usr/local/Cellar/llvm/bin ]; then
-    export PATH=$PATH:/usr/local/Cellar/llvm/bin
-  fi
-
-  #pyenvが入っていればこれをPathに追加し, pyenvのpythonのバージョンにする
-  if [ -e $HOME/.pyenv/shims ]; then
-    export PATH=$PATH:$HOME/.pyenv/shims
-    eval "$(pyenv init -)"
-  fi
-elif [ "`uname`" == "Linux" ]; then
-  echo "Linux setting"
+if [ "$HOSTNAME" = ydmdtn005 ]; then
+  echo "ydmdtn005 setting"
+  sudo mount -t cifs //m5fsv01.murata.co.jp/sdc /mnt/Drive_L -o username=mm07860,uid=1000,gid=1000
 fi

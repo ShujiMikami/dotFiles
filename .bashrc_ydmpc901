@@ -1,0 +1,3 @@
+echo "ydmpc901 setting"
+
+sudo mount -t cifs //m5fsv01.murata.co.jp/sdc /mnt/Drive_L -o username=mm07860,uid=1000,gid=1000

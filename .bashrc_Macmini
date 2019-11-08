@@ -1,4 +1,4 @@
-echo "MacBookAir setting"
+echo "Macmini setting"
 
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 export PATH=$PATH:/Applications

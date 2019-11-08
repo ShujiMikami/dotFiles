@@ -19,3 +19,4 @@ setup_mac.command~
 *.un~
 *.swp
 *.bashrc~
+.bash_profile~

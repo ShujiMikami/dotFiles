@@ -27,4 +27,7 @@ alias vi='vim'
 [[ "$HOSTNAME" =~ ydmpc901 ]] && source_file ~/dotFiles/.bashrc_ydmpc901
 
 #Home MacBookAir
-[[ "$HOSTNAME" =~ MacBookAir ]] && source_file ~/dotFiles/.bashrc_MacBookAir
+[[ "$HOSTNAME" =~ MacBookAir.local ]] && source_file ~/dotFiles/.bashrc_MacBookAir
+
+#Home Macmini
+[[ "$HOSTNAME" =~ Macmini.local ]] && source_file ~/dotFiles/.bashrc_Macmini

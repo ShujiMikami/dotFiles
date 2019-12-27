@@ -1,0 +1,11 @@
+やったこと
+  neovimダウンロード
+  C直下に移動
+  ~/AppData/Local/nvim/init.vimを作成
+  let g:python_host_prog = '$PYTHON27_DIR/python.exe' で, python3のパスを通す
+  let g:python3_host_prog = '$PYTHON37_DIR/python.exe' で, python2のパスを通す
+  https://kitahina.co/2019/08/getting-start-neovim/のとおりにたんたんとやる
+  deopleteをたんたんとインストールする
+  LanguageClient-neovimをたんたんとインストールし, cにclangdを指定する. ここだけで普通にコードチェックが走るようになる
+  deopleteがpythonを認識するためには, パスを, expand()で展開する必要あり
+

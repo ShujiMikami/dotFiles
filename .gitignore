@@ -20,3 +20,4 @@ setup_mac.command~
 *.swp
 *.bashrc~
 .bash_profile~
+neovim/nvim/.netrwhist

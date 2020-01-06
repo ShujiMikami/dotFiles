@@ -21,3 +21,4 @@ setup_mac.command~
 *.bashrc~
 .bash_profile~
 neovim/nvim/.netrwhist
+*.vim~

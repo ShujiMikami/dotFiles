@@ -4,4 +4,5 @@ else
   au FileType plantuml command! OpenUml :! open -a "Google Chrome" % 
 endif
 
+autocmd FileType plantuml setlocal completefunc=omnifunc
 

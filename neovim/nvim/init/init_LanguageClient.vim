@@ -6,7 +6,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_hasSnippetSupport = 0
 
-set completefunc=LanguageClient#complete
+autocmd FileType c setlocal completefunc=LanguageClient#complete
 
 nnoremap <SPACE>h :call LanguageClient#textDocument_hover()<CR>
 nnoremap <SPACE>d :call LanguageClient#textDocument_definition()<CR>

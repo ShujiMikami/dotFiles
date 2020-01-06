@@ -1,89 +1,124 @@
+"pythonパス定義{{{
 let g:python_host_prog = expand('$PYTHON27_DIR/python.exe')
 let g:python3_host_prog = expand('$PYTHON37_DIR/python.exe')
+"}}}
 
-" dein.vim
+"カラースキーム{{{
+  "ここで指定しておかないと, airlineのthemeを上書きしてしまう
+  colorscheme molokai
+"}}}
 
-if &compatible
+"プラグイン用ファイル読み込み{{{
+  runtime init/init_dein.vim
+  runtime init/init_LanguageClient.vim
+  runtime init/init_deoplete.vim
+  runtime init/init_plantuml-syntax.vim
+  runtime init/init_vimtex.vim
+  runtime init/init_vim-airline-theme.vim
+  runtime init/init_nerdtree.vim
+"}}}
 
-  set nocompatible
+"キーリマップ{{{
+  runtime init/init_keyremap.vim
+"}}}
 
-endif
+""共通設定{{{
+  "ファイルタイプ検出
+  filetype plugin indent on
 
-" Add the dein installation directory into runtimepath
+  "コマンド可視化
+  set showcmd
+  
+  "シンタックス有効
+  syntax enable
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+  "下分割
+  set splitbelow
 
+  "TABでのメニュー補完
+  set wildmenu
 
+  "オムニ補完ON
+  set omnifunc=syntaxcomplete#Complete
 
-if dein#load_state('~/.cache/dein')
+  "行番号表示
+  set number
 
-  call dein#begin('~/.cache/dein')
+  "日本語フォント設定
+  set encoding=utf-8
+  set fileencodings=utf-8,sjis,iso-2022.jp,euc-jp
 
+  "自動インデント
+  set autoindent
 
+  "タブは2スペース
+  set tabstop=2
 
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  "移動量2文字
+  set shiftwidth=2
 
-  call dein#add('Shougo/deoplete.nvim')
+  "C言語スタイルのインデント有効
+  set cindent
 
-  if !has('nvim')
+  "展開タブ有効
+  set expandtab
 
-    call dein#add('roxma/nvim-yarp')
+  "ルーラ
+  set ruler
 
-    call dein#add('roxma/vim-hug-neovim-rpc')
+  "不可視文字を表示
+  set list
+  set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<,eol:<
+  
+  "インクリメンタルサーチ
+  set incsearch
+  
+  "検索結果をハイライト
+  set hlsearch
+  
+  "検索がファイル末尾まで進んだらファイル先頭から再検索
+  set wrapscan
+  
+  "検索で大文字小文字は無視
+  set ignorecase
+"  
+  "ウインドウ幅より長い行は折り返す
+  set wrap
+"  
+  "対応括弧をハイライト表示
+  set showmatch
+  
+  "カーソル移動で行をまたいで移動
+  set whichwrap=h,l
+"  
+  "保存されていないファイルがあっても別のファイルを開ける
+  set hidden
+  
+  "コマンド履歴を2000
+  set history=2000
+  
+  "ステータスラインを表示
+  set laststatus=2
+  
+  "カーソル行をハイライト
+  set cursorline
+  
+  "vimを256モードで動作
+  set t_Co=256
 
-  endif
+  "truecolor
+  set termguicolors
 
-  " ここに使いたいプラグインを書いておく
+  "背景色
+  set background=dark
+  
+  "マーカー文字列で折りたたみ埋め込み
+  set foldmethod=marker
+  
+  "初回起動時の場所をユーザーホームとする"
+  cd ~
+"}}}
 
-  call dein#add('tomasr/molokai')
+ 
 
-  call dein#add('dracula/vim')
-
-  call dein#add('vim-airline/vim-airline')
-
-  call dein#add('vim-airline/vim-airline-themes')
-
-  call dein#add('autozimu/LanguageClient-neovim', {
-  	\ 'rev': 'next',
-  	\ 'build': 'powershell -executionpolicy bypass -File install.ps1',
-  	\ })
-
-
-
-  call dein#end()
-
-  call dein#save_state()
-
-endif
-
-
-
-filetype plugin indent on
-
-syntax enable
-
-let g:LanguageClient_serverCommands = {
-	\ 'c':['clangd'],
-	\ 'cpp':['clangd']
-	\}
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_hasSnippetSupport = 0
-
-set completefunc=LanguageClient#complete
-
-nnoremap <SPACE>h :call LanguageClient#textDocument_hover()<CR>
-nnoremap <SPACE>d :call LanguageClient#textDocument_definition()<CR>
-nnoremap <SPACE>r :call LanguageClient#textDocument_rename()<CR>
-nnoremap <SPACE>f :call LanguageClient#textDocument_formatting()<CR>
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_reflesh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 10000
 

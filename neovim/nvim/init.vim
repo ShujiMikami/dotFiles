@@ -1,5 +1,5 @@
-let g:python_host_prog = expand('$PYTHON27_DIR/python.exe')
-let g:python3_host_prog = expand('$PYTHON37_DIR/python.exe')
+let g:python_host_prog = expand('$PYTHON27_DIR/python')
+let g:python3_host_prog = expand('$PYTHON37_DIR/python')
 
 " dein.vim
 

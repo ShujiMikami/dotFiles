@@ -1,6 +1,6 @@
 "pythonパス定義{{{
-let g:python_host_prog = expand('$PYTHON27_DIR/python')
-let g:python3_host_prog = expand('$PYTHON37_DIR/python')
+let g:python_host_prog = expand('$PYTHON27_DIR/python2')
+let g:python3_host_prog = expand('$PYTHON37_DIR/python3')
 "}}}
 
 "カラースキーム{{{

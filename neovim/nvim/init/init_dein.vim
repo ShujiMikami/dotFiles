@@ -51,6 +51,10 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('preservim/nerdtree')
 
+  call dein#add('thinca/vim-quickrun')
+
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+
   "プラグインここまで
 
   call dein#end()

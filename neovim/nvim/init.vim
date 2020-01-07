@@ -39,7 +39,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   set wildmenu
 
   "オムニ補完ON
-  set omnifunc=syntaxcomplete#Complete
+  set completefunc=omnifunc
 
   "行番号表示
   set number

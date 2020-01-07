@@ -31,3 +31,8 @@ alias vi='vim'
 
 #Home Macmini
 [[ "$HOSTNAME" =~ Macmini.local ]] && source_file ~/dotFiles/.bashrc_Macmini
+
+#Home MacPro2006
+[[ "$HOSTNAME" =~ MacPro2006.local ]] && source_file ~/dotFiles/.bashrc_MacPro2006
+
+

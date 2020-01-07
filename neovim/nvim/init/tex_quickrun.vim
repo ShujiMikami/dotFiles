@@ -4,7 +4,7 @@ let g:quickrun_config['tex'] = {
 \ 'outputter' : 'error',
 \ 'outputter/error/success' : 'null',
 \ 'outputter/error/error' : 'quickfix',
-\ 'srcfile' : expand("%"),
+\ 'srcfile' : "%",
 \ 'cmdopt': '-pdfdvi -cd',
 \ 'hook/sweep/files' : [
 \                      '%S:p:r.aux',

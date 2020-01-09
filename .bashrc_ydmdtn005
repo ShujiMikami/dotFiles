@@ -5,30 +5,27 @@ echo ""
 
 echo "Setting overview"
 echo "  mount m5fsv01 to /mnt/Drive_L"
-echo "  Add arm-none-eabi-tools bin directory to PATH"
-echo "  Add /Applications to PATH"
 echo "  Define python27 executable directory as PYTHON27_DIR"
-echo "  Define python27 executable directory as PYTHON37_DIR"
+echo "  Define python37 executable directory as PYTHON37_DIR"
 echo "  Define python27 executable path as PYTHON2_EXECUTABLE"
 echo "  Define python27 executable path as PYTHON3_EXECUTABLE"
-echo "  Define arm-none-eabi-tools bin directory as ARM_NONE_EABI_TOOLS_DIR"
 echo "  Alias nvim as vim"
 echo "  Alias nvim as vi"
 echo ""
 
 echo "Needed Install"
-echo "  [C, C++ develop]LLVM"
-echo "  [C, C++ develop]arm-none-eabi-tools"
 echo "  [Neovim]python2.7.1+"
 echo "  [Neovim]python3.6.1+"
 echo "  [Neovim]pynvim"
-echo "  [LaTex develop]TexLive"
-echo "  [LaTex develop]latexmk"
+echo "  [Neovim]dein
 echo ""
 
 echo "Recomended Install"
-echo "  [Terminal]iTerm2"
 echo ""
 
 
 sudo mount -t cifs //m5fsv01.murata.co.jp/sdc /mnt/Drive_L -o username=mm07860,uid=1000,gid=1000
+export PYTHON27_DIR=/usr/bin
+export PYTHON37_DIR=/usr/bin
+export PYTHON2_EXECUTABLE=/usr/bin/python2
+export PYTHON3_EXECUTABLE=/usr/bin/python3

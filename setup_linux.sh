@@ -13,16 +13,22 @@ fi
 if [ -e ".bashrc" ];then
   rm -r .bashrc
 fi
+# .bashrcを.bashrcの名前でHOMEにシンボリックリンク
+ln -s $SCRIPT_DIR/.bashrc .bashrc
+
 # .bash_profileがあれば, 削除
 if [ -e ".bash_profile" ];then
   rm -r .bash_profile
 fi
-
-# .bashrcを.bashrcの名前でHOMEにシンボリックリンク
-ln -s $SCRIPT_DIR/.bashrc .bashrc
-
 # .bash_profileを.bash_profileの名前でHOMEにシンボリックリンク
 ln -s $SCRIPT_DIR/.bash_profile .bash_profile
+
+# .latexmkrcがあれば, 削除
+if [ -e ".latexmkrc" ];then
+  rm -r .latexmkrc
+fi
+# .latexmkrcをシンボリックリンク
+ln -s $SCRIPT_DIR/.latexmkrc .latexmkrc
 
 # .configに移動
 cd .config
@@ -30,20 +36,3 @@ cd .config
 # nvimフォルダをシンボリックリンク
 ln -s $SCRIPT_DIR/neovim/nvim nvim
 
-# .vimrcを.vimrcの名前でHOMEにシンボリックリンク
-#ln -s $SCRIPT_DIR/.vimrc .vimrc
-
-# .gvimrcを.gvimrcの名前でHOMEにシンボリックリンク
-#ln -s $SCRIPT_DIR/.gvimrc .gvimrc
-
-# .vimを.vimの名前でHOMEにシンボリックリンク
-#ln -s $SCRIPT_DIR/.vim .vim
-
-# .bashrcを.bashrcの名前でHOMEにシンボリックリンク
-#ln -s $SCRIPT_DIR/.bashrc .bashrc
-
-# .bash_profileを.bash_profileの名前でHOMEにシンボリックリンク
-#ln -s $SCRIPT_DIR/.bash_profile .bash_profile
-
-# .latexmkrcをシンボリックリンク
-#ln -s $SCRIPT_DIR/.latexmkrc .latexmkrc

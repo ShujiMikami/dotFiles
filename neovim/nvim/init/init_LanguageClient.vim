@@ -1,6 +1,7 @@
 let g:LanguageClient_serverCommands = {
 	\ 'c':['clangd'],
-	\ 'cpp':['clangd']
+	\ 'cpp':['clangd'],
+  \ 'python':['pyls']
 	\}
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1

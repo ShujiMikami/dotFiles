@@ -10,6 +10,9 @@
   nnoremap + <C-w>+
   nnoremap - <C-w>-
 
+  "ターミナルモードでは, escキーで, Terminal-Normalに遷移
+  tnoremap <Esc> <C-\><C-n>
+
 "}}}
 
 

@@ -251,9 +251,9 @@ class Nvim_arm_openocd_gdb_debug(object):
 #            self.nvim.current.window = self.currwin
             self.gdbwin.buffer.request('nvim_buf_set_lines', index - 1, index, True, [message]) 
 
-            strToSend = self.gdbwin.buffer.request('nvim_buf_get_lines', index - 1, index, True)[0] 
+#            strToSend = self.gdbwin.buffer.request('nvim_buf_get_lines', index - 1, index, True)[0] 
             
-            self.nvim.command('echo ' + '\'' + strToSend + '\'')
+#            self.nvim.command('echo ' + '\'' + strToSend + '\'')
         else:
 #            self.nvim.command('echo \'new line\'')
 #        self.gdbwin.buffer.request('nvim_buf_set_lines', index, index, False, message)

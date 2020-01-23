@@ -99,11 +99,21 @@ class Nvim_arm_openocd_gdb_debug(object):
 
     @pynvim.function('TestFunction6')
     def testfunction6(self, args):
-        self.nvim.current.window = self.gdbwin
-        self.nvim.command('d')
-        self.nvim.current.window = self.currwin
+        string = 'abcd'
+        self.nvim.current.window.buffer.append(string, -1)
+        time.sleep(1)
+        self.nvim.command('2d')
+        time.sleep(1)
+        string = string + 'e'
+        self.nvim.current.window.buffer.append(string, -1)
+        time.sleep(1)
+        self.nvim.command('2d')
+        time.sleep(1)
+        string = string + 'f'
+        self.nvim.current.window.buffer.append(string, -1)
 
 
+    
 
 
 
@@ -198,7 +208,7 @@ class Nvim_arm_openocd_gdb_debug(object):
     openocdRunFlag = True
     #openocdMessageLineReady = False
     #openocdMessageLineBuf = ""
-    openocdMessageLineQueue = queue.Queue()
+#    openocdMessageLineQueue = queue.Queue()
 
     def openocdThread(self):
         while self.openocdRunFlag == True:
@@ -221,38 +231,54 @@ class Nvim_arm_openocd_gdb_debug(object):
     def writeToOpenocdWin(self, message, index=-1):
         self.openocdwin.buffer.append(message, index)
 
-    def writeToGdbWin(self, message, index=-1):
+    def writeToGdbWin(self, message, index):
+#        strIndex = 'echo ' + str(index)
+#        strIndex = 'echo ' + '\'' + message + str(index) + '\''
+#        self.nvim.command(strIndex)
         if index != 0:
-            self.nvim.current.window = self.gdbwin
-            self.nvim.command('d')
-            self.nvim.current.window = self.currwin
-
-        self.gdbwin.buffer.append(message)
+#            self.nvim.command('echo \'keep line\'')
+#            self.nvim.current.window = self.gdbwin
+#            self.nvim.command('2d')
+#            self.nvim.current.window = self.currwin
+            self.gdbwin.buffer.request('nvim_buf_set_lines', index - 1, index, True, [message]) 
+        else:
+#            self.nvim.command('echo \'new line\'')
+#        self.gdbwin.buffer.request('nvim_buf_set_lines', index, index, False, message)
+#            self.gdbwin.buffer.append(message)
+#            self.gdbwin.buffer.append("abcde")
+#            self.gdbwin.buffer.append("abcde")
+            self.gdbwin.buffer.append("")
+#            self.gdbwin.buffer.request('nvim_buf_set_lines', index, index + 1, True, [message]) 
 
     gdbRunFlag = True
     #gdbMessageLineReady = False
     #gdbMessageLineBuf = ""
-    gdbMessageLineQueue = queue.Queue()
+#    gdbMessageLineQueue = queue.Queue()
     def gdbThread(self):
         strLine = ""
-        strLinePos = 0
+        strLinePos = -1
         while self.gdbRunFlag == True:
             out = self.gdbProc.stdout.read(1)
+            self.gdbProc.stdout.flush()
             if out == '' and self.gdbProc.poll() != None:
                 break
-            if out != '' and out != '\r' and out != '\n':
-                if out != '\r' and out != '\n':
+            if out != '':
+                if out.decode() != '\r' and out.decode() != '\n' and out.decode() != '^M':
                     strLine = strLine + out.decode()
-                    self.nvim.async_call(self.writeToGdbWin, strLine.splitlines(), strLinePos)
+#                    strLine = out.decode()
+                    self.nvim.async_call(self.writeToGdbWin, strLine, strLinePos)
                     strLinePos = -1
                 else :
-#            strLine.find("\r\n") >= 0:
+#                strLine.find("\r\n") >= 0:
 #                self.gdbMessageLineQueue.put(strLine.splitlines())
 #                self.nvim.async_call(self.writeToGdbWin, strLine.splitlines())
     #                self.gdbMessageLineBuf = strLine.splitlines()
     ##                self.gdbMessageLineReady = True
                     strLine = ""
+#                    self.nvim.async_call(self.writeToGdbWin, strLine, strLinePos)
                     strLinePos = 0
+#            self.nvim.async_call(self.writeToGdbWin, strLine, strLinePos)
+#            time.sleep(0.2)
 
         #    #gdbwin.buffer.append(out.decode().splitlines())
 #        while self.gdbRunFlag == True:

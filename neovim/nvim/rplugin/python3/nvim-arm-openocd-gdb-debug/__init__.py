@@ -71,6 +71,9 @@ class Nvim_arm_openocd_gdb_debug(object):
 
     @pynvim.function('TestFunction2')
     def testfunction2(self, args):
+#        self.writeToGdbWin('target remote localhost:3333', -1)
+        self.addToGdbWin_wo_newline('target remote localhost:3333')
+        self.gdbwin.buffer.append("")
         self.gdbProc.stdin.write('target remote localhost:3333'.encode("utf8") + b"\n")
         self.gdbProc.stdin.flush()
 #        self.openocdwin.buffer.append('added')
@@ -231,6 +234,12 @@ class Nvim_arm_openocd_gdb_debug(object):
     def writeToOpenocdWin(self, message, index=-1):
         self.openocdwin.buffer.append(message, index)
 
+    def addToGdbWin_wo_newline(self, message):
+        existingStr = str(self.gdbwin.buffer.request('nvim_buf_get_lines', -2, -1, True)[0])
+
+        strToReWrite = existingStr + str(message)
+
+        self.gdbwin.buffer.request('nvim_buf_set_lines', -2, -1, True, [strToReWrite]) 
     def writeToGdbWin(self, message, index):
 #        strIndex = 'echo ' + str(index)
 #        strIndex = 'echo ' + '\'' + message + str(index) + '\''
@@ -241,6 +250,10 @@ class Nvim_arm_openocd_gdb_debug(object):
 #            self.nvim.command('2d')
 #            self.nvim.current.window = self.currwin
             self.gdbwin.buffer.request('nvim_buf_set_lines', index - 1, index, True, [message]) 
+
+            strToSend = self.gdbwin.buffer.request('nvim_buf_get_lines', index - 1, index, True)[0] 
+            
+            self.nvim.command('echo ' + '\'' + strToSend + '\'')
         else:
 #            self.nvim.command('echo \'new line\'')
 #        self.gdbwin.buffer.request('nvim_buf_set_lines', index, index, False, message)

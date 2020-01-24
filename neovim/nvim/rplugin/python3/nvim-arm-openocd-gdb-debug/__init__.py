@@ -11,6 +11,7 @@ import io
 import sys
 import threading
 import queue
+from .sub_modules import settings_reader
 
 import pynvim
 
@@ -71,55 +72,64 @@ class Nvim_arm_openocd_gdb_debug(object):
 
     @pynvim.function('TestFunction2')
     def testfunction2(self, args):
-#        self.writeToGdbWin('target remote localhost:3333', -1)
         self.addToGdbWin_wo_newline('target remote localhost:3333')
         self.gdbwin.buffer.append("")
+        self.strLine = ""
         self.gdbProc.stdin.write('target remote localhost:3333'.encode("utf8") + b"\n")
         self.gdbProc.stdin.flush()
-#        self.openocdwin.buffer.append('added')
-#        self.nvim.command('echo 2')
 
     @pynvim.function('TestFunction3')
     def testfunction3(self, args):
+        self.addToGdbWin_wo_newline('interrupt')
+        self.gdbwin.buffer.append("")
+        self.strLine = ""
         self.gdbProc.stdin.write('interrupt'.encode("utf8") + b"\n")
         self.gdbProc.stdin.flush()
-#        self.openocdwin.buffer.append('added')
-#        self.nvim.command('echo 3')
 
     @pynvim.function('TestFunction4')
     def testfunction4(self, args):
+        self.addToGdbWin_wo_newline('monitor reset halt')
+        self.gdbwin.buffer.append("")
+        self.strLine = ""
         self.gdbProc.stdin.write('montor reset halt'.encode("utf8") + b"\n")
         self.gdbProc.stdin.flush()
-#        self.openocdwin.buffer.append('added')
-#        self.nvim.command('echo 3')
 
     @pynvim.function('TestFunction5')
     def testfunction5(self, args):
+        self.addToGdbWin_wo_newline('load')
+        self.gdbwin.buffer.append("")
+        self.strLine = ""
         self.gdbProc.stdin.write('load'.encode("utf8") + b"\n")
         self.gdbProc.stdin.flush()
-#        self.openocdwin.buffer.append('added')
-#        self.nvim.command('echo 3')
 
     @pynvim.function('TestFunction6')
     def testfunction6(self, args):
-        string = 'abcd'
-        self.nvim.current.window.buffer.append(string, -1)
-        time.sleep(1)
-        self.nvim.command('2d')
-        time.sleep(1)
-        string = string + 'e'
-        self.nvim.current.window.buffer.append(string, -1)
-        time.sleep(1)
-        self.nvim.command('2d')
-        time.sleep(1)
-        string = string + 'f'
-        self.nvim.current.window.buffer.append(string, -1)
+        self.addToGdbWin_wo_newline('tb main')
+        self.gdbwin.buffer.append("")
+        self.strLine = ""
+        self.gdbProc.stdin.write('tb main'.encode("utf8") + b"\n")
+        self.gdbProc.stdin.flush()
 
+    @pynvim.function('TestFunction7')
+    def testfunction7(self, args):
+        self.addToGdbWin_wo_newline('continue')
+        self.gdbwin.buffer.append("")
+        self.strLine = ""
+        self.gdbProc.stdin.write('continue'.encode("utf8") + b"\n")
+        self.gdbProc.stdin.flush()
 
-    
-
-
-
+    @pynvim.function('TestFunction8')
+    def testfunction8(self, args):
+        currentDir = self.nvim.command_output('pwd')
+        settings = settings_reader.SettingReader(currentDir)
+        self.nvim.command('echo ' + '\'' + settings.effectiveItem + '\'')
+ 
+    @pynvim.function('TestFunction9')
+    def testfunction9(self, args):
+        currentDir = self.nvim.command_output('pwd')
+        settings = settings_reader.SettingReader(currentDir)
+        self.nvim.command('echo ' + '\'' + settings.effectiveItem + '\'')
+        
     @pynvim.function('TestFunction')
     def testfunction(self, args):
         self.currwin = self.nvim.current.window
@@ -173,8 +183,8 @@ class Nvim_arm_openocd_gdb_debug(object):
             self.gdbwin.buffer.append("")
 
     gdbRunFlag = True
+    strLine = ""
     def gdbThread(self):
-        strLine = ""
         strLinePos = -1
         while self.gdbRunFlag == True:
             out = self.gdbProc.stdout.read(1)
@@ -183,11 +193,11 @@ class Nvim_arm_openocd_gdb_debug(object):
                 break
             if out != '':
                 if out.decode() != '\r' and out.decode() != '\n' and out.decode() != '^M':
-                    strLine = strLine + out.decode()
-                    self.nvim.async_call(self.writeToGdbWin, strLine, strLinePos)
+                    self.strLine = self.strLine + out.decode()
+                    self.nvim.async_call(self.writeToGdbWin, self.strLine, strLinePos)
                     strLinePos = -1
                 else :
-                    strLine = ""
+                    self.strLine = ""
                     strLinePos = 0
 
     def messageWriteWin(self):

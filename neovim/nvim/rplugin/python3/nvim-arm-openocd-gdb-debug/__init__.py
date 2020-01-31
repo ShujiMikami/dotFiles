@@ -132,11 +132,22 @@ class Nvim_arm_openocd_gdb_debug(object):
  
     @pynvim.function('TestFunction10')
     def testfunction10(self, args):
-        buf = self.nvim.request('nvim_create_buf', True, False)
+        buf = self.nvim.request('nvim_create_buf', False, True)
         self.nvim.request('nvim_buf_set_lines', buf, 0, -1, True, ["test", "text"])
-
-        
-        
+        opts = {'relative': 'editor', 'width':10, 'height':10, 'col':10, 'row':self.nvim.eval('&lines'), 'anchor': 'SW', 'style': 'minimal'}
+        win = self.nvim.request('nvim_open_win', buf, 0, opts)
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
+        time.sleep(1)
+        self.nvim.request('nvim_buf_set_lines', buf, -2, -1, True, ["replace"])
         
     @pynvim.function('TestFunction')
     def testfunction(self, args):

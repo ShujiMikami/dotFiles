@@ -123,7 +123,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   cd ~
 
   "一つ目の候補を選択状態にする
-  set completeopt+=noinsert
+  "set completeopt+=noinsert
 
   "クリップボード互換
   set clipboard+=unnamedplus

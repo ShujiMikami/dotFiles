@@ -12,6 +12,8 @@ import sys
 import threading
 import queue
 from .sub_modules import settings_reader
+from .sub_modules import openocd_runner
+from .sub_modules import gdb_runner
 
 import pynvim
 
@@ -134,7 +136,7 @@ class Nvim_arm_openocd_gdb_debug(object):
     def testfunction10(self, args):
         buf = self.nvim.request('nvim_create_buf', False, True)
         self.nvim.request('nvim_buf_set_lines', buf, 0, -1, True, ["test", "text"])
-        opts = {'relative': 'editor', 'width':10, 'height':10, 'col':10, 'row':self.nvim.eval('&lines'), 'anchor': 'SW', 'style': 'minimal'}
+        opts = {'relative': 'editor', 'width':10, 'height':3, 'col':10, 'row':self.nvim.eval('&lines'), 'anchor': 'SW', 'style': 'minimal'}
         win = self.nvim.request('nvim_open_win', buf, 0, opts)
         time.sleep(1)
         self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
@@ -148,7 +150,29 @@ class Nvim_arm_openocd_gdb_debug(object):
         self.nvim.request('nvim_buf_set_lines', buf, -1, -1, True, ["add"])
         time.sleep(1)
         self.nvim.request('nvim_buf_set_lines', buf, -2, -1, True, ["replace"])
-        
+        time.sleep(1)
+        lastline = self.nvim.request('nvim_buf_line_count', buf)
+        self.nvim.request('nvim_win_set_cursor', win, (lastline, 1))
+        time.sleep(1)
+        self.nvim.request('nvim_win_close', win, True)
+
+    gdbrunnner = None
+
+    @pynvim.function('TestFunction11')
+    def testfunction11(self, args):
+        FW_WORKSPACE_ROOT = r'C:\Users\mm07860\workspace\gohei_system4\FW'
+        os.chdir(FW_WORKSPACE_ROOT)
+ 
+        openocdrunner = openocd_runner.Nvim_openocd_runner(self.nvim, os.environ['ECLIPSE_OPENOCD_BIN_DIR'] + r'\openocd')
+        openocdrunner.StartOpenocdDebugging(['.\stlink.cfg', '.\stm32f4x.cfg'])
+
+        self.gdbrunner = gdb_runner.Nvim_gdb_runner(self.nvim, os.environ['ARM_NONE_EABI_TOOLS_DIR'] + r'\arm-none-eabi-gdb')
+        self.gdbrunner.StartGdbDebugging(r'.\build\gohei_system4_FW.elf')
+
+    @pynvim.function('TestFunction12')
+    def testfunction12(self, args):
+        self.gdbrunner.SendGdbCommand('target remote localhost:3333')
+
     @pynvim.function('TestFunction')
     def testfunction(self, args):
         self.currwin = self.nvim.current.window

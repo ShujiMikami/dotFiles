@@ -37,8 +37,6 @@ class Nvim_openocd_runner(object):
         self._openocdProc.kill()
 
     def _openocdMessageThread(self, scriptFiles):
-        self._nvim.async_call(self._createWindow)
-
         executeStr = self._openocd_path
 
         for scriptFile in scriptFiles:
@@ -51,7 +49,6 @@ class Nvim_openocd_runner(object):
         while self._thread_openocdFlag == True:
             messageLineStr = self._openocdProc.stderr.readline().decode().splitlines()
             self._nvim.async_call(self._writeToOpenocdWin, messageLineStr)
-            time.sleep(0.5)
 
     def _writeToOpenocdWin(self, messageLineStr):
         self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [str(messageLineStr[0])])
@@ -59,6 +56,7 @@ class Nvim_openocd_runner(object):
         self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
 
     def StartOpenocdDebugging(self, scriptFiles):
+        self._createWindow()
         thread_openocd = threading.Thread(target=self._openocdMessageThread, args=[scriptFiles])
         thread_openocd.start()
     

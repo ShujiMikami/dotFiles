@@ -55,6 +55,8 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
+  call dein#add('ncm2/float-preview.nvim.git')
+
   "プラグインここまで
 
   call dein#end()

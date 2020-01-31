@@ -130,6 +130,8 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
 
   "候補が一つでも補完表示
   set completeopt+=menuone
+
+  set completeopt-=preview
 "}}}
 
 

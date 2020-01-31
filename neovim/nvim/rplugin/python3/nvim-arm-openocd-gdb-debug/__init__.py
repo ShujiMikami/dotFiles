@@ -129,6 +129,14 @@ class Nvim_arm_openocd_gdb_debug(object):
         currentDir = self.nvim.command_output('pwd')
         settings = settings_reader.SettingReader(currentDir)
         self.nvim.command('echo ' + '\'' + settings.effectiveItem + '\'')
+ 
+    @pynvim.function('TestFunction10')
+    def testfunction10(self, args):
+        buf = self.nvim.request('nvim_create_buf', True, False)
+        self.nvim.request('nvim_buf_set_lines', buf, 0, -1, True, ["test", "text"])
+
+        
+        
         
     @pynvim.function('TestFunction')
     def testfunction(self, args):

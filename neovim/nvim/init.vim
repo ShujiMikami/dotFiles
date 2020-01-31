@@ -132,6 +132,8 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   set completeopt+=menuone
 
   set completeopt-=preview
+
+  set mouse=a
 "}}}
 
 

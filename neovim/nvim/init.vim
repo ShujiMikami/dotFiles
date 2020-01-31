@@ -15,6 +15,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   runtime init/init_plantuml-syntax.vim
   runtime init/init_vimtex.vim
   runtime init/init_vim-airline-theme.vim
+  runtime init/init_vim-airline.vim
   runtime init/init_nerdtree.vim
   runtime init/init_vim-quickrun.vim
   runtime init/tex_quickrun.vim
@@ -42,7 +43,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   set wildmenu
 
   "オムニ補完ON
-  set completefunc=omnifunc
+"  set completefunc+=omnifunc
 
   "行番号表示
   set number
@@ -120,6 +121,17 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   
   "初回起動時の場所をユーザーホームとする"
   cd ~
+
+  "一つ目の候補を選択状態にする
+  "set completeopt+=noinsert
+
+  "クリップボード互換
+  set clipboard+=unnamedplus
+
+  "候補が一つでも補完表示
+  set completeopt+=menuone
+
+  set completeopt-=preview
 "}}}
 
 

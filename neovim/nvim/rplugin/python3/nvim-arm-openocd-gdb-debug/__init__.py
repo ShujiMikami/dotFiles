@@ -157,14 +157,15 @@ class Nvim_arm_openocd_gdb_debug(object):
         self.nvim.request('nvim_win_close', win, True)
 
     gdbrunnner = None
+    openocdrunner = None
 
     @pynvim.function('TestFunction11')
     def testfunction11(self, args):
         FW_WORKSPACE_ROOT = r'C:\Users\mm07860\workspace\gohei_system4\FW'
         os.chdir(FW_WORKSPACE_ROOT)
  
-        openocdrunner = openocd_runner.Nvim_openocd_runner(self.nvim, os.environ['ECLIPSE_OPENOCD_BIN_DIR'] + r'\openocd')
-        openocdrunner.StartOpenocdDebugging(['.\stlink.cfg', '.\stm32f4x.cfg'])
+        self.openocdrunner = openocd_runner.Nvim_openocd_runner(self.nvim, os.environ['ECLIPSE_OPENOCD_BIN_DIR'] + r'\openocd')
+        self.openocdrunner.StartOpenocdDebugging(['.\stlink.cfg', '.\stm32f4x.cfg'])
 
         self.gdbrunner = gdb_runner.Nvim_gdb_runner(self.nvim, os.environ['ARM_NONE_EABI_TOOLS_DIR'] + r'\arm-none-eabi-gdb')
         self.gdbrunner.StartGdbDebugging(r'.\build\gohei_system4_FW.elf')
@@ -172,6 +173,12 @@ class Nvim_arm_openocd_gdb_debug(object):
     @pynvim.function('TestFunction12')
     def testfunction12(self, args):
         self.gdbrunner.SendGdbCommand('target remote localhost:3333')
+
+    @pynvim.function('TestFunction13')
+    def testfunction13(self, args):
+        self.gdbrunner.StopGdbDebugging()
+        self.openocdrunner.StopOpenocdDebugging()
+
 
     @pynvim.function('TestFunction')
     def testfunction(self, args):

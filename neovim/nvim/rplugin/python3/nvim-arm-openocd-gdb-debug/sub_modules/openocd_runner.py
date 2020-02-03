@@ -30,6 +30,9 @@ class Nvim_openocd_runner(object):
         opts = {'relative': 'editor', 'width':80, 'height':10, 'col':81, 'row':(self._nvim.eval('&lines')-2), 'anchor': 'SW', 'style': 'minimal'}
         self._win = self._nvim.request('nvim_open_win', self._buf, 0, opts)
 
+    def _validateWriteTarget(self):
+        return (self._nvim.request('nvim_buf_is_valid', self._buf) == True and self._nvim.request('nvim_win_is_valid', self._win) == True)
+
     def _destroyWindow(self):
         self._nvim.request('nvim_win_close', self._win, True)
 
@@ -51,9 +54,10 @@ class Nvim_openocd_runner(object):
             self._nvim.async_call(self._writeToOpenocdWin, messageLineStr)
 
     def _writeToOpenocdWin(self, messageLineStr):
-        self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [str(messageLineStr[0])])
-        lastline = self._nvim.request('nvim_buf_line_count', self._buf)
-        self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
+        if self._validateWriteTarget() == True:
+            self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [str(messageLineStr)])
+            lastline = self._nvim.request('nvim_buf_line_count', self._buf)
+            self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
 
     def StartOpenocdDebugging(self, scriptFiles):
         self._createWindow()
@@ -61,8 +65,8 @@ class Nvim_openocd_runner(object):
         thread_openocd.start()
     
     def StopOpenocdDebugging(self):
-        self._killopenocdProccess()
         self._thread_openocdFlag = False
+        self._killopenocdProccess()
         self._destroyWindow()
 
 

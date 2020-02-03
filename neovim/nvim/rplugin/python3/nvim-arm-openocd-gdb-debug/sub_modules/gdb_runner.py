@@ -39,6 +39,9 @@ class Nvim_gdb_runner(object):
     def _getCurrentBufLine(self):
         return self._nvim.request('nvim_buf_get_lines', self._buf, -2, -1, True)[0] 
 
+    def _validateWriteTarget(self):
+        return (self._nvim.request('nvim_buf_is_valid', self._buf) == True and self._nvim.request('nvim_win_is_valid', self._win) == True)
+
     def _gdbMessageThread(self, elfFile):
         executeStr = self._gdb_path + r' ' + elfFile
 
@@ -67,13 +70,14 @@ class Nvim_gdb_runner(object):
 
 
     def _writeToGdbWin(self, messageLineStr, newLine):
-        if newLine == False:
-            currentLine = messageLineStr
-            self._nvim.request('nvim_buf_set_lines', self._buf, -2, -1, True, [currentLine])
-        else:
-            self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [messageLineStr])
-            lastline = self._nvim.request('nvim_buf_line_count', self._buf)
-            self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
+        if self._validateWriteTarget() == True:
+            if newLine == False:
+                currentLine = messageLineStr
+                self._nvim.request('nvim_buf_set_lines', self._buf, -2, -1, True, [currentLine])
+            else:
+                self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [messageLineStr])
+                lastline = self._nvim.request('nvim_buf_line_count', self._buf)
+                self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
 
     def _addToCurrentLineGdbWin(self, messageLineStr, nextLine=True):
         lineToWrite = self._nvim.request('nvim_buf_get_lines', self._buf, -2, -1, True)[0] + messageLineStr
@@ -94,7 +98,7 @@ class Nvim_gdb_runner(object):
         thread_gdb.start()
     
     def StopGdbDebugging(self):
-        self._killGdbProccess()
         self._thread_gdbFlag = False
+        self._killGdbProccess()
         self._destroyWindow()
 

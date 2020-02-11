@@ -23,6 +23,7 @@ class Nvim_gdb_runner(object):
         self._win = None
         self._gdbProc = None
         self._thread_gdbFlag = False
+        self._messageLog = list()
 
         
     def _createWindow(self):
@@ -78,6 +79,7 @@ class Nvim_gdb_runner(object):
                 self._nvim.request('nvim_buf_set_lines', self._buf, -1, -1, True, [messageLineStr])
                 lastline = self._nvim.request('nvim_buf_line_count', self._buf)
                 self._nvim.request('nvim_win_set_cursor', self._win, (lastline, 1))
+                self._messageLog.append(messageLineStr)
 
     def _addToCurrentLineGdbWin(self, messageLineStr, nextLine=True):
         lineToWrite = self._nvim.request('nvim_buf_get_lines', self._buf, -2, -1, True)[0] + messageLineStr
@@ -86,6 +88,10 @@ class Nvim_gdb_runner(object):
 
         if nextLine == True:
             self._writeToGdbWin("", True)
+
+    @property
+    def LastMessage(self):
+        return self._messageLog[-1]
 
     def SendGdbCommand(self, commandMessage):
         self._addToCurrentLineGdbWin(commandMessage)
@@ -101,4 +107,4 @@ class Nvim_gdb_runner(object):
         self._thread_gdbFlag = False
         self._killGdbProccess()
         self._destroyWindow()
-
+        self._messageLog.clear()

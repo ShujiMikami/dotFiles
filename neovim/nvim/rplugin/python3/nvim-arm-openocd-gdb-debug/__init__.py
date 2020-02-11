@@ -176,8 +176,33 @@ class Nvim_arm_openocd_gdb_debug(object):
 
     @pynvim.function('TestFunction13')
     def testfunction13(self, args):
+        self.gdbrunner.SendGdbCommand('interrupt')
+
+    @pynvim.function('TestFunction14')
+    def testfunction14(self, args):
+        self.gdbrunner.SendGdbCommand('monitor reset halt')
+
+    @pynvim.function('TestFunction15')
+    def testfunction15(self, args):
+        self.gdbrunner.SendGdbCommand('load')
+
+    @pynvim.function('TestFunction16')
+    def testfunction16(self, args):
+        self.gdbrunner.SendGdbCommand('tb main')
+
+    @pynvim.function('TestFunction17')
+    def testfunction17(self, args):
+        self.gdbrunner.SendGdbCommand('continue')
+
+    @pynvim.function('TestFunction18')
+    def testfunction18(self, args):
         self.gdbrunner.StopGdbDebugging()
         self.openocdrunner.StopOpenocdDebugging()
+
+    @pynvim.function('TestFunction19')
+    def testfunction19(self, args):
+        source_id = self.nvim.new_highlight_source()
+        self.nvim.current.buffer.add_highlight("String", 0, 0, -1,source_id) 
 
 
     @pynvim.function('TestFunction')

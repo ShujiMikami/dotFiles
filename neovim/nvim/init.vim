@@ -26,7 +26,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   runtime init/init_keyremap.vim
 "}}}
 
-""共通設定{{{
+"共通設定{{{
   "ファイルタイプ検出
   filetype plugin indent on
 
@@ -136,4 +136,8 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   set mouse=a
 "}}}
 
-
+"ファイルタイプ別設定{{{"
+autocmd FileType c setlocal foldmethod=syntax
+autocmd FileType pyton setlocal foldmethod=syntax
+autocmd FileType cpp setlocal foldmethod=syntax
+"}}}

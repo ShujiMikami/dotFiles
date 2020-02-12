@@ -57,6 +57,8 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('ncm2/float-preview.nvim.git')
 
+  call dein#add('jistr/vim-nerdtree-tabs')
+
   "プラグインここまで
 
   call dein#end()

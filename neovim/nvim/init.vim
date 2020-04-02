@@ -49,8 +49,9 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   set number
 
   "日本語フォント設定
-  set encoding=utf-8
-  set fileencodings=utf-8,sjis,iso-2022.jp,euc-jp
+  "set encoding=utf-8
+  set fileencodings=utf-8,sjis,cp932,iso-2022-jp,euc-jp
+  set fileformats=unix,dos,mac
 
   "自動インデント
   set autoindent

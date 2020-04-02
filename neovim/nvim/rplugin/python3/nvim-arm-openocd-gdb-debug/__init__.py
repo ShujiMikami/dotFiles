@@ -202,7 +202,11 @@ class Nvim_arm_openocd_gdb_debug(object):
     @pynvim.function('TestFunction19')
     def testfunction19(self, args):
         source_id = self.nvim.new_highlight_source()
-        self.nvim.current.buffer.add_highlight("String", 0, 0, -1,source_id) 
+        #self.nvim.current.buffer.add_highlight("String", 0, 0, -1,source_id) 
+        #self.nvim.current.buffer.add_highlight("Identifier", 0, 0, -1,source_id) 
+        self.nvim.current.buffer.add_highlight("CursorLine", 0, 0, -1,source_id) 
+        #self.nvim.current.buffer.add_highlight("StatusLine", 0, 0, -1,source_id) 
+        #self.nvim.current.buffer.add_highlight("Normal", 0, 0, -1,source_id) 
 
 
     @pynvim.function('TestFunction')

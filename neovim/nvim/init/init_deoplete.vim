@@ -15,6 +15,8 @@ autocmd FileType plantuml setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType tex setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType python setlocal omnifunc=LanguageClient#complete
 
+set completeopt+=noselect
+
 if !exists('g:deoplete#sources#omni#input_patterns')
   let g:deoplete#omni_patterns = {}
 endif

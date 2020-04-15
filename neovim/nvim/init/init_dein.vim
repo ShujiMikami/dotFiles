@@ -20,7 +20,6 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('Shougo/deoplete.nvim')
 
   if !has('nvim')
 
@@ -31,6 +30,8 @@ if dein#load_state('~/.cache/dein')
   endif
 
   " ここに使いたいプラグインを書いておく
+
+  call dein#add('Shougo/deoplete.nvim')
 
   call dein#add('tomasr/molokai')
 

@@ -41,10 +41,23 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('vim-airline/vim-airline-themes')
 
-  call dein#add('autozimu/LanguageClient-neovim', {
-  	\ 'rev': 'next',
-  	\ 'build': 'powershell -executionpolicy bypass -File install.ps1',
-  	\ })
+  if has("mac")
+    call dein#add('autozimu/LanguageClient-neovim', {
+    	\ 'rev': 'next',
+      \ 'build': 'bash install.sh'
+    	\ })
+  elseif has("unix")
+    call dein#add('autozimu/LanguageClient-neovim', {
+    	\ 'rev': 'next',
+      \ 'build': 'bash install.sh'
+    	\ })
+  elseif has("win64")
+    call dein#add('autozimu/LanguageClient-neovim', {
+    	\ 'rev': 'next',
+      \ 'build': 'powershell -executionpolicy bypass -File install.ps1'
+    	\ })
+  endif
+
 
   call dein#add('aklt/plantuml-syntax')
 
@@ -59,6 +72,11 @@ if dein#load_state('~/.cache/dein')
   call dein#add('ncm2/float-preview.nvim.git')
 
   call dein#add('jistr/vim-nerdtree-tabs')
+
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['plantuml', 'markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cmd -c "cd app & yarn install"' })
+
+  call dein#add('tyru/open-browser.vim')
 
   "プラグインここまで
 

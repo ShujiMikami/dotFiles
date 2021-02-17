@@ -29,6 +29,8 @@ let g:termdebug_popup = 0
 let g:termdebug_wide = 163
 "}}}
 
+let g:mkdp_command_for_global = 1
+
 "キーリマップ{{{
   runtime init/init_keyremap.vim
 "}}}

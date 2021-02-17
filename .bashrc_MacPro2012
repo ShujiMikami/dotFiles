@@ -1,0 +1,54 @@
+echo "******************************************"
+echo "MacPro2012 setting"
+echo "******************************************"
+echo ""
+
+echo "Setting overview"
+echo "  Add LLVM bin dir to PATH"
+echo "  Add pyenv dir to PATH"
+echo "  Add arm-none-eabi-tools bin directory to PATH"
+echo "  Add /Applications to PATH"
+echo "  Define SW4STM32 OpenOCD Directory as SW4STM32_OPEN_OCD_DIR"
+echo "  Add SW4STM32_OPEN_OCD_DIR to PATH"
+echo "  Define arm-none-eabi-tools bin directory as ARM_NONE_EABI_TOOLS_DIR"
+echo "  Define open-ocd directory as OPEN_OCD_BIN_PATH"
+echo ""
+
+echo "Needed Install"
+echo "  [C, C++ develop]LLVM"
+echo "  [C, C++ develop]arm-none-eabi-tools"
+echo "  [Neovim]python2.7.1+"
+echo "  [Neovim]python3.6.1+"
+echo "  [Neovim]pynvim"
+echo "  [LaTex develop]TexLive"
+echo "  [LaTex develop]latexmk"
+echo ""
+
+echo "Recomended Install"
+echo "  [Terminal]iTerm2"
+echo "  [Python]pyenv"
+echo "  [Python]pyenv-virtualenv"
+echo "  [PackageManagement]Homebrew"
+echo ""
+
+#LLVM
+export LLVM_DIR=/usr/local/Cellar/llvm/11.0.0
+export PATH=$PATH:$LLVM_DIR/bin
+
+#pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PATH=$PATH:$HOME/.pyenv/shims
+  eval "$(pyenv init -)"
+  export PYENV_ROOT=$HOME/.pyenv
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+export SW4STM32_OPEN_OCD_DIR=~/.p2/pool/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.23.0.201904120827/tools/openocd/bin
+export PATH=$PATH:/Applications/gcc-arm-none-eabi-9-2019-q4-major/bin 
+export PATH=$PATH:/Applications
+export PATH=$PATH:$SW4STM32_OPEN_OCD_DIR
+export ARM_NONE_EABI_TOOLS_DIR=/Applications/gcc-arm-none-eabi-9-2019-q4-major/bin 
+export OPEN_OCD_BIN_PATH=/usr/local/bin
+export PATH=$PATH:/$HOME/.local/bin
+
+

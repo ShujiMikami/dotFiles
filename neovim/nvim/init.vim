@@ -21,6 +21,7 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   runtime init/tex_quickrun.vim
 "}}}
 
+let g:mkdp_command_for_global = 1
 
 "キーリマップ{{{
   runtime init/init_keyremap.vim

@@ -1,9 +1,13 @@
-﻿"Python{{{
-  if hostname() == 'MacPro2012.local'
-    let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-    let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
-  endif
+"pythonパス定義{{{
+if hostname() == 'MacPro2012.local'
+  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
+  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
+elseif hostname() == 'MM07-MDTN001'
+  let g:python_host_prog = expand('$PYTHON2_EXECUTABLE')
+  let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
+endif
 "}}}
+"
 "カラースキーム{{{
   "ここで指定しておかないと, airlineのthemeを上書きしてしまう
   colorscheme molokai

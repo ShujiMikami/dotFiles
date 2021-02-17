@@ -21,7 +21,7 @@ alias ll='ls -alFG'
 alias vi='vim'
 
 #Office Linux Desktop
-[[ "$HOSTNAME" =~ ydmdtn005 ]] && source_file ~/dotFiles/.bashrc_ydmdtn005
+[[ "$HOSTNAME" =~ MM07-MDTN005 ]] && source_file ~/dotFiles/.bashrc_ydmdtn005
 
 #Office Raspberry Pi
 [[ "$HOSTNAME" =~ ydmpc901 ]] && source_file ~/dotFiles/.bashrc_ydmpc901

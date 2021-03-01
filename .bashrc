@@ -20,6 +20,7 @@ alias ls='ls -FG'
 alias ll='ls -alFG'
 alias vi='vim'
 
+
 #Office Linux Desktop
 [[ "$HOSTNAME" =~ MM07-MDTN005 ]] && source_file ~/dotFiles/.bashrc_ydmdtn005
 

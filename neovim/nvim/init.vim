@@ -27,6 +27,7 @@ endif
   runtime init/init_nerdtree.vim
   runtime init/init_vim-quickrun.vim
   runtime init/tex_quickrun.vim
+  runtime init/init_markdown_previewer.vim
 "}}}
 
 "Termdebug{{{

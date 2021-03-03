@@ -20,8 +20,9 @@ alias ls='ls -FG'
 alias ll='ls -alFG'
 alias vi='vim'
 
+
 #Office Linux Desktop
-[[ "$HOSTNAME" =~ ydmdtn005 ]] && source_file ~/dotFiles/.bashrc_ydmdtn005
+[[ "$HOSTNAME" =~ MM07-MDTN005 ]] && source_file ~/dotFiles/.bashrc_ydmdtn005
 
 #Office Raspberry Pi
 [[ "$HOSTNAME" =~ ydmpc901 ]] && source_file ~/dotFiles/.bashrc_ydmpc901
@@ -35,4 +36,5 @@ alias vi='vim'
 #Home MacPro2006
 [[ "$HOSTNAME" =~ MacPro2006.local ]] && source_file ~/dotFiles/.bashrc_MacPro2006
 
-
+#Home MacPro2012
+[[ "$HOSTNAME" =~ MacPro2012.local ]] && source_file ~/dotFiles/.bashrc_MacPro2012

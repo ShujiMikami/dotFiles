@@ -1,7 +1,8 @@
+let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/'. 'pyls'
 let g:LanguageClient_serverCommands = {
 	\ 'c':['clangd'],
 	\ 'cpp':['clangd'],
-  \ 'python':['pyls']
+  \ 'python':[expand(s:pyls_path)]
 	\}
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1

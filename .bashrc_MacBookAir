@@ -14,6 +14,7 @@ echo "  Define python27 executable directory as PYTHON37_DIR"
 echo "  Define python27 executable path as PYTHON2_EXECUTABLE"
 echo "  Define python27 executable path as PYTHON3_EXECUTABLE"
 echo "  Define arm-none-eabi-tools bin directory as ARM_NONE_EABI_TOOLS_DIR"
+echo "  Add TexLive to PATH"
 echo "  Define open-ocd directory as OPEN_OCD_BIN_PATH"
 echo "  Alias nvim as vim"
 echo "  Alias nvim as vi"
@@ -33,6 +34,15 @@ echo "Recomended Install"
 echo "  [Terminal]iTerm2"
 echo ""
 
+#python
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PATH:$PYENV_ROOT/bin
+export PATH=$PATH:$PYENV_ROOT/shims
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 alias vim=/Applications/nvim-osx64/bin/nvim
 export SW4STM32_OPEN_OCD_DIR=~/.p2/pool/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.23.0.201904120827/tools/openocd/bin
 export PATH=$PATH:/Applications/clang+llvm-9.0.0-x86_64-darwin-apple/bin
@@ -47,4 +57,5 @@ export PYTHON2_EXECUTABLE=/usr/local/bin/python2
 export PYTHON3_EXECUTABLE=/usr/local/bin/python3
 export ARM_NONE_EABI_TOOLS_DIR=/Applications/gcc-arm-none-eabi-9-2019-q4-major/bin 
 export OPEN_OCD_BIN_PATH=/usr/local/bin
+export PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-darwin
 

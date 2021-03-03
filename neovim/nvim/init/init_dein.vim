@@ -60,6 +60,10 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('jistr/vim-nerdtree-tabs')
 
+  call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['plantuml', 'markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'sh -c "cd app & yarn install"' })
+  call dein#add('tyru/open-browser.vim')
+
   "プラグインここまで
 
   call dein#end()

@@ -19,8 +19,8 @@ let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
   runtime init/init_nerdtree.vim
   runtime init/init_vim-quickrun.vim
   runtime init/tex_quickrun.vim
+  runtime init/init_markdown_previewer.vim
 "}}}
-
 
 "キーリマップ{{{
   runtime init/init_keyremap.vim

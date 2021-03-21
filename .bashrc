@@ -38,3 +38,6 @@ alias vi='vim'
 
 #Home MacPro2012
 [[ "$HOSTNAME" =~ MacPro2012.local ]] && source_file ~/dotFiles/.bashrc_MacPro2012
+
+#MacBookAirKasumi
+[[ "$HOSTNAME" =~ KatsuminoMacBook-Air.local ]] && source_file ~/dotFiles/.bashrc_MacBookAirKatsumi

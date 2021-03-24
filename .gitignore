@@ -34,3 +34,4 @@ neovim/nvim/rplugin/python3/nvim-arm-openocd-gdb-debug/__pycache__/__init__.cpyt
 neovim/nvim/rplugin/python3/nvim-arm-openocd-gdb-debug/sub_modules/__pycache__/gdb_runner.cpython-39.pyc
 neovim/nvim/rplugin/python3/nvim-arm-openocd-gdb-debug/sub_modules/__pycache__/openocd_runner.cpython-39.pyc
 neovim/nvim/rplugin/python3/nvim-arm-openocd-gdb-debug/sub_modules/__pycache__/settings_reader.cpython-39.pyc
+.cache

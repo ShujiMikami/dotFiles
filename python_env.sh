@@ -1,7 +1,6 @@
 # カレントディレクトリパスを取得
 DOTFILES_DIR=$(cd $(dirname $0) && pwd)
 
-command -v pyenvv 1>/dev/null 2>&1
 git clone https://github.com/pyenv/pyenv.git $DOTFILES_DIR/.cache/.pyenv
 echo "export PYENV_ROOT="$DOTFILES_DIR/.cache/.pyenv" #pyenv root directory" >> $DOTFILES_DIR/.cache/.profile_python
 echo 'export PATH="$PATH:$PYENV_ROOT/bin" #pyenv executable path' >> $DOTFILES_DIR/.cache/.profile_python

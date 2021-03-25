@@ -1,6 +1,6 @@
-#if [ -f ~/.bashrc ]; then
-#  . ~/.bashrc
-#fi
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
 
 #pyenv path settings
 if [ -f /Users/shuji/dotFiles/.cache/.profile_python ] ; then

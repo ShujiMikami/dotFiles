@@ -11,6 +11,6 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1 ; then\n  eval "$(pyenv init -)"\n
 echo -e '#pyenv virtualenv init' >> $DOTFILES_DIR/.cache/.profile_python
 echo -e 'if command -v pyenv 1>/dev/null 2>&1 ; then\n  eval "$(pyenv virtualenv init -)"\nfi' >> $DOTFILES_DIR/.cache/.profile_python
 
-echo -e '#pyenv path settings' >> ~/.bash_profile
-echo -e "if [ -f $DOTFILES_DIR/.cache/.profile_python ] ; then\n  source $DOTFILES_DIR/.cache/.profile_python\nfi" >> ~/.bash_profile
-
+if command -v cat ~/.bash_profile | grep "#pyenv path settings" 1>/dev/null 2>&1 ; then
+  echo -e "#pyenv path settings\nif [ -f $DOTFILES_DIR/.cache/.profile_python ] ; then\n  source $DOTFILES_DIR/.cache/.profile_python\nfi" >> ~/.bash_profile
+fi

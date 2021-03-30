@@ -1,5 +1,5 @@
 echo "******************************************"
-echo "MacBookAir setting"
+echo "KatsuminoMacBook-Air setting"
 echo "******************************************"
 echo ""
 
@@ -33,7 +33,7 @@ echo "  [Terminal]iTerm2"
 echo ""
 
 #neovim
-export NEOVIM_ROOT=/Applications/nvim-osx64/bin
+export NEOVIM_ROOT=~/Applications/nvim-osx64/bin
 export PATH=$PATH:$NEOVIM_ROOT
 
 #python

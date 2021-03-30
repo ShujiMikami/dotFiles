@@ -1,7 +1,11 @@
 # カレントディレクトリパスを取得
 DOTFILES_DIR=$(cd $(dirname $0) && pwd)
+TARGET_DIR=$DOTFILES_DIR/.cache/Applications/neovim
+PROFILE=$DOTFILES_DIR/.cache/Profiles/.profile_neovim
 
-mkdir $DOTFILES_DIR/.cache/neovim
+if [ ! -d $TARGET_DIR ] ; then
+  mkdir $TARGET_DIR
+fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   #linux
@@ -9,37 +13,22 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz 
   tar xzf nvim-macos.tar.gz
-  mv nvim-osx64 $DOTFILES_DIR/.cache/neovim
+  mv nvim-osx64 $TARGET_DIR
+  echo "export NEOVIM_ROOT="$TARGET_DIR/nvim-osx64" #neovim root directory" >> $PROFILE
 fi
 
-echo "export NEOVIM_ROOT="$DOTFILES_DIR/.cache/neovim/nvim-osx64" #neovim root directory" >> $DOTFILES_DIR/.cache/.profile_neovim
-echo 'export PATH="$PATH:$NEOVIM_ROOT/bin" #neovim executable path' >> $DOTFILES_DIR/.cache/.profile_neovim
+echo 'export PATH="$PATH:$NEOVIM_ROOT/bin" #neovim executable path' >> $PROFILE
 source $DOTFILES_DIR/.cache/.profile_neovim
 
-#pyenv init
-if command -v pyenv 1>/dev/null 2>&1 ; then
-  eval "$(pyenv init -)"
-fi
-#pyenv virtualenv init
-if command -v pyenv 1>/dev/null 2>&1 ; then
-  eval "$(pyenv virtualenv-init -)"
-fi
+pyenv install 3.9.2
+pyenv install 2.7.18
 
-if command -v pyenv versions | grep 3.9.2 1>/dev/null 2>&1 ; then
-  pyenv install 3.9.2
-fi
+pyenv virtualenv 3.9.2 nvim-python3
 
-if command -v pyenv versions | grep 2.7.18 1>/dev/null 2>&1 ; then
-  pyenv install 2.7.18
-fi
+pyenv virtualenv 2.7.18 nvim-python2
 
-if command -v pyenv versions | grep nvim-python3 1>/dev/null 2>&1 ; then
-  pyenv virtualenv 3.9.2 nvim-python3
-fi
-
-if command -v pyenv versions | grep nvim-python2 1>/dev/null 2>&1 ; then
-  pyenv virtualenv 2.7.18 nvim-python2
-fi
+eval "$(pyenv init -)"
+eval "$(pyenv vertualenv-init -)"
 
 pyenv activate nvim-python3
 pip3 install pynvim
@@ -49,6 +38,8 @@ pyenv activate nvim-python2
 pip install pynvim
 pyenv deactivate nvim-python2
 
-if command -v cat ~/.bash_profile | grep "#neovim path settings" 1>/dev/null 2>&1 ; then
-  echo -e "#neovim path settings\nif [ -f $DOTFILES_DIR/.cache/.profile_neovim ] ; then\n  source $DOTFILES_DIR/.cache/.profile_neovim\nfi" >> ~/.bash_profile
+if ! command -v cat ~/.bash_profile | grep "#neovim path settings" 1>/dev/null 2>&1 ; then
+  echo -e "#neovim path settings\nif [ -f $PROFILE ] ; then\n  source $PROFILE\nfi" >> ~/.bash_profile
 fi
+
+source ~/.bash_profile

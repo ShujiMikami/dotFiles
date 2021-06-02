@@ -3,8 +3,17 @@ DOTFILES_DIR=$(cd $(dirname $0) && pwd)
 TARGET_DIR=$DOTFILES_DIR/.cache/Applications/neovim
 PROFILE=$DOTFILES_DIR/.cache/Profiles/.profile_neovim
 
+#.bash_profileへの記載文字列
+BASH_PROFILE_STRING="if [ -f $PROFILE ] ; then source ${PROFILE} ; fi #neovim path settings"
+BASH_PROFILE_STRING_4_SEARCH="if \[ -f $PROFILE \] ; then source ${PROFILE} ; fi #neovim path settings"
+
+
 if [ ! -d $TARGET_DIR ] ; then
   mkdir $TARGET_DIR
+fi
+
+if [ -f $PROFILE ] ; then
+  rm $PROFILE
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -38,8 +47,9 @@ pyenv activate nvim-python2
 pip install pynvim
 pyenv deactivate nvim-python2
 
-if ! command -v cat ~/.bash_profile | grep "#neovim path settings" 1>/dev/null 2>&1 ; then
-  echo -e "#neovim path settings\nif [ -f $PROFILE ] ; then\n  source $PROFILE\nfi" >> ~/.bash_profile
+if grep -q "$BASH_PROFILE_STRING_4_SEARCH" ~/.bash_profile ; then
+  echo "already exists"
+else
+  echo -e "$BASH_PROFILE_STRING" >> ~/.bash_profile
 fi
-
 source ~/.bash_profile

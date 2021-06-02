@@ -1,6 +1,15 @@
 # カレントディレクトリパスを取得
 DOTFILES_DIR=$(cd $(dirname $0) && pwd)
 
+echo "Set up overview"
+echo "  Download LLVM 11.0.0"
+echo "  Add LLVM bin dir to PATH"
+echo "  Create python 3.9.2 virtualenv for compiledb and add script dir to PATH"
+echo "  Install compiledb"
+echo ""
+
+
+
 #インストール先
 TARGET_DIRECTORY=$DOTFILES_DIR/.cache/Applications/.pyenv
 

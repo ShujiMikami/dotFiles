@@ -5,9 +5,7 @@ echo ""
 
 echo "Setting overview"
 echo "  Add LLVM bin dir to PATH"
-echo "  Add pyenv dir to PATH"
 echo "  Add arm-none-eabi-tools bin directory to PATH"
-echo "  Add /Applications to PATH"
 echo "  Define SW4STM32 OpenOCD Directory as SW4STM32_OPEN_OCD_DIR"
 echo "  Add SW4STM32_OPEN_OCD_DIR to PATH"
 echo "  Define arm-none-eabi-tools bin directory as ARM_NONE_EABI_TOOLS_DIR"
@@ -26,8 +24,6 @@ echo ""
 
 echo "Recomended Install"
 echo "  [Terminal]iTerm2"
-echo "  [Python]pyenv"
-echo "  [Python]pyenv-virtualenv"
 echo "  [PackageManagement]Homebrew"
 echo ""
 

@@ -11,14 +11,14 @@ if has('mac')
   let g:vimtex_view_method='skim'
 endif
 if has('win32')||has('win64')
-  let g:vimtex_view_general_viewer = '"C:\Program Files\SumatraPDF\SumatraPDF.exe"'
+  let g:vimtex_view_general_viewer = $HOME . '\dotFiles\.cache\Applications\SumatraPDF\SumatraPDF.exe'
   let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
   let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 endif
 let g:vimtex_compiler_progname = expand(s:nvr_path)
 
 function! SetServerName()
-  if has('win32')
+  if has('win32')||has('win64')
     let nvim_server_file = $TEMP . "/nvimsocket"
   else
     let nvim_server_file = "/tmp/nvimsocket"

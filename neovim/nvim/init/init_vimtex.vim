@@ -1,6 +1,8 @@
 "texのファイルタイプをlatexで認識
 let g:tex_flavor = "latex"
 
+let s:nvr_path = fnamemodify(g:python3_host_prog, ':h') . '/'. 'nvr'
+
 autocmd FileType tex setlocal completefunc=omnifunc
 
 if has('mac')
@@ -9,9 +11,11 @@ if has('mac')
   let g:vimtex_view_method='skim'
 endif
 if has('win32')||has('win64')
-  let g:vimtex_view_general_viewer = '"C:\Program Files\SumatraPDF\SumatraPDF.exe" -reuse-instance'
+  let g:vimtex_view_general_viewer = '"C:\Program Files\SumatraPDF\SumatraPDF.exe"'
+  let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+  let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 endif
-let g:vimtex_compiler_progname='nvr'
+let g:vimtex_compiler_progname = expand(s:nvr_path)
 
 function! SetServerName()
   if has('win32')

@@ -1,7 +1,9 @@
 let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/'. 'pyls'
+let s:clangd_path = '$HOME/dotFiles/.cache/Applications/llvm/clang+llvm-12.0.0-x86_64-apple-darwin/bin/clangd'
+
 let g:LanguageClient_serverCommands = {
-	\ 'c':['clangd'],
-	\ 'cpp':['clangd'],
+	\ 'c':[expand(s:clangd_path)],
+	\ 'cpp':[expand(s:clangd_path)],
   \ 'python':[expand(s:pyls_path)],
   \ 'tex':['$HOME/dotFiles/.cache/Applications/texlab/texlab']
 	\}

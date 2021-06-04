@@ -1,7 +1,7 @@
 "pythonパス定義{{{
 if hostname() == 'MacPro2012.local'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
+  let g:python_host_prog = $HOME . '/dotFiles/neovim/nvim-python2/.venv/bin/python'
+  let g:python3_host_prog = $HOME . '/dotFiles/neovim/nvim-python3/.venv/bin/python'
 elseif hostname() == 'MacBookAir.local'
   let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
   let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'

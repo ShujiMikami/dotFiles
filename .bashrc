@@ -16,9 +16,9 @@ else
 	PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
 fi
 
-alias ls='ls -FG'
-alias ll='ls -alFG'
-alias vi='vim'
+alias ls='ls -aFG --color -h -1 -l --group-directories-first'
+alias ll='ls -alFG --color -h -1 -l --group-directories-first'
+
 
 
 #Office Linux Desktop

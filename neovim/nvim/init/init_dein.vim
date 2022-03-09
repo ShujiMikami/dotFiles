@@ -30,6 +30,7 @@ if dein#load_state('~/.cache/dein')
   endif
 
   " ここに使いたいプラグインを書いておく
+  "
 
   call dein#add('Shougo/deoplete.nvim')
 
@@ -58,6 +59,7 @@ if dein#load_state('~/.cache/dein')
     	\ })
   endif
 
+  call dein#add('tyru/open-browser.vim')
 
   call dein#add('aklt/plantuml-syntax')
 
@@ -76,8 +78,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['plantuml', 'markdown', 'pandoc.markdown', 'rmd'],
 					\ 'build': 'cmd -c "cd app & yarn install"' })
 
-  call dein#add('tyru/open-browser.vim')
 
+  call dein#add('vim-scripts/DoxygenToolkit.vim')
   "プラグインここまで
 
   call dein#end()

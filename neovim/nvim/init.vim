@@ -1,19 +1,10 @@
 "pythonパス定義{{{
-if hostname() == 'MacPro2012.local'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
-elseif hostname() == 'MacBookAir.local'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
-elseif hostname() == 'KatsuminoMacBook-Air.local'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
-elseif hostname() == 'MM07-MDTN001'
-  let g:python_host_prog = expand('$PYTHON2_EXECUTABLE')
-  let g:python3_host_prog = expand('$PYTHON3_EXECUTABLE')
-elseif hostname() == 'MM07-MDTN005'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/nvim-python2/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/nvim-python3/bin/python'
+if has('win32')||has('win64')
+  let g:python_host_prog = $HOME . '/dotFiles/neovim/nvim-python2/.venv/Scripts/python'
+  let g:python3_host_prog = $HOME . '/dotFiles/neovim/nvim-python3/.venv/Scripts/python'
+else
+  let g:python_host_prog = $HOME . '/dotFiles/neovim/nvim-python2/.venv/bin/python'
+  let g:python3_host_prog = $HOME . '/dotFiles/neovim/nvim-python3/.venv/bin/python'
 endif
 "}}}
 "

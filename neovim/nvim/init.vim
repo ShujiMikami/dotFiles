@@ -3,8 +3,8 @@ if has('win32')||has('win64')
   let g:python_host_prog = $HOME . '/dotFiles/neovim/nvim-python2/.venv/Scripts/python'
   let g:python3_host_prog = $HOME . '/dotFiles/neovim/nvim-python3/.venv/Scripts/python'
 else
-  let g:python_host_prog = $HOME . '/dotFiles/neovim/nvim-python2/.venv/bin/python'
-  let g:python3_host_prog = $HOME . '/dotFiles/neovim/nvim-python3/.venv/bin/python'
+  let g:python_host_prog = $HOME . '/.cache/nvim-python2/.venv/bin/python'
+  let g:python3_host_prog = $HOME . '/.cache/nvim-python3/.venv/bin/python'
 endif
 "}}}
 "

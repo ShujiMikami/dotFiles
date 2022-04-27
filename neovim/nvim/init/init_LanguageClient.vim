@@ -4,7 +4,8 @@ let g:LanguageClient_serverCommands = {
 	\ 'c':['clangd'],
 	\ 'cpp':['clangd'],
   \ 'python':[expand(s:pyls_path)],
-  \ 'tex':['$HOME/dotFiles/.cache/Applications/texlab/texlab']
+  \ 'tex':['$HOME/dotFiles/.cache/Applications/texlab/texlab'],
+  \ 'dart':['dart', '/usr/local/Caskroom/flutter/2.10.4/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
 	\}
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1

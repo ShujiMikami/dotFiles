@@ -2,7 +2,11 @@ set completeopt=menu,menuone,noselect
 
 lua <<EOF
   -- Setup nvim-cmp.
-
+  require'cmp'.setup {
+    sources = {
+      { name = 'nvim_lsp_signature_help' }
+    }
+  }
 
   local cmp = require'cmp'
 

@@ -15,8 +15,11 @@ endif
 
 "プラグイン用ファイル読み込み{{{
   runtime init/init_dein.vim
-  runtime init/init_LanguageClient.vim
-  runtime init/init_deoplete.vim
+"  runtime init/init_LanguageClient.vim
+  runtime init/init_nvim-lsp.vim
+"  runtime init/init_lspkind-nvim.vim
+"  runtime init/init_deoplete.vim
+  runtime init/init_nvim-cmp.vim
   runtime init/init_plantuml-syntax.vim
   runtime init/init_vimtex.vim
   runtime init/init_vim-airline-theme.vim
@@ -155,4 +158,5 @@ let g:mkdp_command_for_global = 1
 autocmd FileType c setlocal foldmethod=syntax
 autocmd FileType pyton setlocal foldmethod=syntax
 autocmd FileType cpp setlocal foldmethod=syntax
+autocmd FileType dart setlocal foldmethod=syntax
 "}}}

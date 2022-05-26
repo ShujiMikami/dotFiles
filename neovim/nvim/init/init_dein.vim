@@ -80,6 +80,32 @@ if dein#load_state('~/.cache/dein')
 
 
   call dein#add('vim-scripts/DoxygenToolkit.vim')
+
+  call dein#add('dart-lang/dart-vim-plugin')
+
+"  call dein#add('neoclide/coc.nvim', {'branch': 'release'})
+  call dein#add('neovim/nvim-lspconfig')
+
+  call dein#add('williamboman/nvim-lsp-installer')
+
+  call dein#add('hrsh7th/nvim-cmp')
+
+  call dein#add('hrsh7th/cmp-nvim-lsp')
+
+  call dein#add('hrsh7th/cmp-vsnip')
+
+  call dein#add('hrsh7th/cmp-buffer')
+
+  call dein#add('hrsh7th/vim-vsnip')
+
+  call dein#add('akinsho/flutter-tools.nvim')
+
+  call dein#add('onsails/lspkind.nvim')
+
+  call dein#add('folke/trouble.nvim')
+
+  call dein#add('kyazdani42/nvim-web-devicons')
+
   "プラグインここまで
 
   call dein#end()

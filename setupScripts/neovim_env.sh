@@ -1,8 +1,8 @@
 # カレントディレクトリパスを取得
 CURRENT_DIR=$(cd $(dirname $0) && pwd)
 
-# neovim/nvimを.configにシンボリックリンク
-ln -s $CURRENT_DIR/neovim/nvim ~/.config/nvim
+# dotFiles/neovim/nvimを.configにシンボリックリンク
+ln -s $CURRENT_DIR/../neovim/nvim ~/.config/nvim
 
 # neovim/nvim-python3を.cacheにコピー
 cp -r ../neovim/nvim-python3 ~/.cache/ 

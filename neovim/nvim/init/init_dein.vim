@@ -98,6 +98,8 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('hrsh7th/vim-vsnip')
 
+  call dein#add('hrsh7th/cmp-omni')
+
   call dein#add('akinsho/flutter-tools.nvim')
 
   call dein#add('onsails/lspkind.nvim')

@@ -60,7 +60,7 @@ let g:mkdp_command_for_global = 1
   set wildmenu
 
   "オムニ補完ON
-"  set completefunc+=omnifunc
+  set completefunc+=omnifunc
 
   "行番号表示
   set number

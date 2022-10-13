@@ -10,7 +10,7 @@ nnoremap <SPACE>s :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <SPACE>r :lua vim.lsp.buf.references()<CR>
 nnoremap <SPACE>F :lua vim.lsp.buf.formatting()<CR>
 
-autocmd Filetype dart setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype c setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"autocmd Filetype dart setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"autocmd Filetype c setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd FileType plantuml setlocal omnifunc=syntaxcomplete#Complete

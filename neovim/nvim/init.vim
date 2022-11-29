@@ -160,3 +160,13 @@ autocmd FileType pyton setlocal foldmethod=syntax
 autocmd FileType cpp setlocal foldmethod=syntax
 autocmd FileType dart setlocal foldmethod=syntax
 "}}}
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"c", "cpp", "latex"},
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+}
+EOF

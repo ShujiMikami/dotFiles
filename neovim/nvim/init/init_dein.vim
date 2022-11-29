@@ -106,7 +106,10 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('folke/trouble.nvim')
 
+  call dein#add('nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'})
+
   call dein#add('kyazdani42/nvim-web-devicons')
+
 
   "プラグインここまで
 

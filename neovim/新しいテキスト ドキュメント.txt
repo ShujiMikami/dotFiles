@@ -1,0 +1,18 @@
+やったこと
+  neovimダウンロード
+  C直下に移動
+  ~/AppData/Local/nvim/init.vimを作成
+  let g:python_host_prog = '$PYTHON27_DIR/python.exe' で, python3のパスを通す
+  let g:python3_host_prog = '$PYTHON37_DIR/python.exe' で, python2のパスを通す
+  https://kitahina.co/2019/08/getting-start-neovim/のとおりにたんたんとやる
+  deopleteをたんたんとインストールする
+  LanguageClient-neovimをたんたんとインストールし, cにclangdを指定する. ここだけで普通にコードチェックが走るようになる
+  deopleteがpythonを認識するためには, パスを, expand()で展開する必要あり
+
+  PlantumlViewerのアップデートがしばらくなされておらず, Chromeの2019年8月以降のアップデート版では動かなくなってしまった. さらに, 原因を探ろうにも, ChromeWebストアから削除されており, もう絶望的. 
+  そこで, いろいろ調べて見ると, markdown-previewというのがよさそう. 
+  試して見た. 基本的には, 公式の通りにインストールすれば良いが, yarnがインストールされていないと, うまくいかない. 
+  実際のリポジトリの中身には, Mac, Lin, Winごとにセットアップスクリプトが存在しているが, yarnによるインストールをせずに, これらのスクリプトを叩いても実際にはうまくいかない. 
+  Macの場合は, yarnのインストールをするだけでうまくいった. Winでは, 改めて, mkdp#util#install関数を呼び出すと, 正常に動作した. なお, plantumlのfiletypeでも動かすためには, 
+let g:mkdp_command_for_global = 1 としてやる必要がある. 
+

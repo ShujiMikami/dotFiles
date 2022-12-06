@@ -5,11 +5,11 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 1
 fi
 
-# ====================General===========================
+# ====================General=========================== {{{
 # Default browser Google chrome
 defaults write com.google.Chrome LastRunAppBundlePath -string "/Applications/Google Chrome.app"
-
-# ====================Keyboard=============================
+# }}}
+# ====================Keyboard============================= {{{
 # Disable auto-capitalization
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 
@@ -18,16 +18,16 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
 # Disable live conversion
 defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
-
-# ====================Sound================================
+# }}}
+# ====================Sound================================ {{{
 # Visible enable Sound
 defaults write com.apple.controlcenter NSStatusItem Visible Sound -bool true
-
-# ====================Bluetooth============================
+# }}}
+# ====================Bluetooth============================ {{{
 # Visible enable Bluetooth 
 defaults write com.apple.controlcenter NSStatusItem Visible Bluetooth -bool true
-
-# ====================Finder==============================-
+# }}}
+# ====================Finder==============================-{{{
 # Show hidden files by defaults
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
@@ -36,14 +36,14 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Reflect setting
 killall Finder
-
-# ====================Dock================================
+# }}}
+# ====================Dock================================ {{{
 # Enable auto-hide
-defaults write com.apple.dock auto-hide -bool true
+defaults write com.apple.dock autohide -bool true
 
 # Disable show recents
 defaults write com.apple.dock show-recents -bool false
 
 # Reflect setting
 killall Dock
-
+# }}}

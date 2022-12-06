@@ -12,4 +12,8 @@ chsh -s /bin/bash
 xcode-select --install > /dev/null
 
 # Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null
+if !(type "brew" > /dev/null 2>&1) ; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null
+else
+  echo "Skip. Homebrew already installed."
+fi

@@ -10,3 +10,6 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Add linuxbrew to PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Add llvm link to PATH
+export PATH=/usr/local/opt/llvm/bin:$PATH

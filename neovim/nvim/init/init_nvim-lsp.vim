@@ -32,7 +32,6 @@ lua << EOF
     end
     return result
   end
-
   ---}}}
 
   -- Setup lspconfig.
@@ -60,18 +59,15 @@ lua << EOF
 
     if detect_platformio_espressif32(vim.lsp.buf.list_workspace_folders()[1]) then
       require'lspconfig'.clangd.setup {
-        cmd = { "/Users/shuji/Downloads/esp-clang/bin/clangd", 
+        cmd = { "~/.cache/esp-clang/bin/clangd", 
                 "-background-index",
-                "--query-driver=/Users/shuji/.platformio/packages/*/bin/*"},
+                "--query-driver=~/.platformio/packages/*/bin/*"},
         capabilities = capabilities,
         on_attach = on_attach_c
       }
       print("esp32platform")
     else
       require'lspconfig'.clangd.setup {
---        cmd = { "/Users/shuji/Downloads/esp-clang/bin/clangd", 
---                "-background-index",
---                "--query-driver=/Users/shuji/.platformio/packages/*/bin/*"},
         capabilities = capabilities,
         on_attach = on_attach_c
       }
@@ -80,9 +76,6 @@ lua << EOF
   end
 
   require'lspconfig'.clangd.setup {
---    cmd = { "/Users/shuji/Downloads/esp-clang/bin/clangd", 
---            "-background-index",
---            "--query-driver=/Users/shuji/.platformio/packages/*/bin/*"},
     capabilities = capabilities,
     on_attach = on_attach_c
   }

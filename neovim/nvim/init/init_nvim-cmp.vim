@@ -143,6 +143,8 @@ lua <<EOF
     capabilities = capabilities
   }
   require('lspconfig')['clangd'].setup {
+--    cmd = {"/Users/shuji/workspace/esp-clang/bin/clangd", "--background-index", "--query-driver=/Users/shuji/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-*"},
+    cmd = {"clangd", "--background-index", "--query-driver=/Users/shuji/workspace/MWSTAGE/Tools/ba-elf-ba2-r36379/bin/ba-elf-*"},
     capabilities = capabilities
   }
 

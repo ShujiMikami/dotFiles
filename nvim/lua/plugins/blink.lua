@@ -10,7 +10,7 @@ return {
 
         opts = {
             keymap = {
-                preset = "default",
+                preset = "enter",
             },
 
             appearance = {

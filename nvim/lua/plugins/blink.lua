@@ -21,6 +21,14 @@ return {
                 documentation = {
                     auto_show = true,
                 },
+                menu = {
+                  draw = {
+                    columns = {
+                      { "label" },
+                      { "kind" },
+                    },
+                  },
+                },
             },
 
             sources = {

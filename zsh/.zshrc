@@ -20,5 +20,8 @@ do
 done
 
 
+for f in "${DOTFILES_DIR}"/zsh/tools/*.zsh; do
+  source "${f}"
+done
 
 

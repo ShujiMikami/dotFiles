@@ -4,10 +4,8 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cmake",
+            "command": "scripts/build.sh",
             "args": [
-                "--build",
-                "--preset",
                 "Debug"
             ],
             "group": {

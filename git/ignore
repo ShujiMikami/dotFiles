@@ -1,0 +1,13 @@
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+
+.zcompdump*
+.zsh_history
+
+Session.vim
+
+.idea
+.vscode

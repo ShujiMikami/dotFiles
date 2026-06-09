@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32 Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/STM32TestProj.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+
+            "servertype": "openocd",
+
+            "device": "STM32L476RG",
+
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32l4x.cfg"
+            ],
+
+            "runToEntryPoint": "main",
+
+            "preLaunchTask": "build"
+        }
+    ]
+}

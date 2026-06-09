@@ -1,3 +1,0 @@
-[submodule ".vim/vim-latex"]
-  path = .vim/bundle/vim-latex
-  url = https://github.com/vim-latex/vim-latex.git

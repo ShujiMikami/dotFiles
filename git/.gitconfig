@@ -1,0 +1,14 @@
+[user]
+	name = "Shuji Mikami"
+	email = "carbonized.pan@gmail.com"
+[core]
+	editor = nvim
+	autocrlf = input
+[color]
+	ui = auto
+[init]
+	defaultBranch = master
+[include]
+	path = aliases.gitconfig
+[core]
+	excludesfile = ignore

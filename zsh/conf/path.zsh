@@ -26,3 +26,4 @@ if [[ -d "${HOME}/bin" ]]; then
 		$path
 	)
 fi
+

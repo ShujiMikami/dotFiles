@@ -1,0 +1,2 @@
+CompileFlags:
+  Remove: [-mbranch-cost=*, -mredzone-size=*, -mcpu=*, -march=*]

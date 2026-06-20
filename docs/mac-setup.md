@@ -107,17 +107,82 @@ stm32.md を参照。
 
 ---
 
-## 9. ESP32環境構築
+## 9. TWELITE開発環境
+
+twelite.md を参照。
+
+---
+
+## 10. ESP32環境構築
 
 esp32.md を参照。
 
 ---
 
-## 10. Webブラウザ環境構築
+## 11. Webブラウザ環境構築
 
 Google Chromeは, グラフィック動作のためにAVX2命令セットを使う構造に移行を進めており, MacPro2012のハードウェア構成では対応できないため, 一部のサイト(Monowirelessや, GoogleMapなどで顕著)で, GPUアクセラレーションを切らないとフリーズしたような動作になる. 
 一方, ブラウザゲームなどは, ハードウェアアクセラレーションを前提にしているケースも多く, オフにすると都合が悪い. 
 Edge, Safari, Firefoxなどはこの問題を回避でき, 特にFirefoxはWin, Lin, Mac共通で使用できる上, 明示的に古いプラットフォームでの対応を打ち出しているため, Firefoxとするのがよい. 
+
+## 12. FT232R USB-UART変換器
+
+### 症状
+
+FT232R USB UART が USB デバイスとしては認識されるが、
+
+```bash
+ls /dev/cu.*
+ls /dev/tty.*
+```
+
+にデバイスが現れない。
+
+system.log には以下が出力される。
+
+```text
+AppleUSBFTDI::start() fail
+```
+
+### 環境
+
+- Mac Pro 2012
+- macOS Sonoma
+- OCLP
+
+### 調査結果
+
+以下を確認した。
+
+- FT232RはMonterey環境では正常認識
+- ST-Link VCPはSonoma環境でも正常認識
+- USBポート変更では改善せず
+- Apple標準FTDIドライバが初期化失敗している
+
+そのため、
+
+```text
+AppleUSBFTDI.dext
++
+OCLP Sonoma
+```
+
+の相性問題と判断。
+
+### 対処
+
+FTDI VCP Driver 1.6.0 では改善しなかった。
+
+FTDI VCP Driver 2.4.2 をインストールすることで正常認識した。
+
+認識後は
+
+```text
+/ dev/cu.usbserial-*
+/ dev/tty.usbserial-*
+```
+
+が生成される。
 
 ## 完了条件
 

@@ -1,0 +1,6 @@
+export PYENV_ROOT="$HOME/.pyenv"
+
+if command -v pyenv >/dev/null 2>&1; then
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init - zsh)"
+fi

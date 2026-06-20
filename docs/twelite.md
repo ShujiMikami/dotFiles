@@ -9,6 +9,7 @@
 * ビルド: make
 * コンパイルデータベース生成: compiledb
 * SDK: TWELITE STAGE SDK (MWSDK)
+* 書き込みツール: tweterm.py
 * OS: macOS Sonoma
 * シェル: zsh
 
@@ -58,6 +59,16 @@ export MWSDK_ROOT="$HOME/workspace/MWSTAGE202508_macOS_R2/MWSDK"
 
 ---
 
+## tweterm.py
+
+TWELITEの最新SDKでは, TWELITE Stage Appを使用することが想定されており, SDKからtweterm.pyは削除されている. 
+しかし, TWELITE State Appは, twelite-Rの使用を想定されているのか, 一般のUSB-UART変換基板, チップでの接続ができないか, 不安定である. 事実, MacPro2012 + oclp + sonomaの環境では, FTDIチップの存在を検出できなかった. 
+従って, tweterm.pyを使う必要があり, また, pythonスクリプトということもあり, ターミナル操作との相性もよい. 
+最新SDKでは削除されているため, 古いSDKを別途ダウンロードし, そこから取得する必要がある.  
+どこまで遡る必要があるかは未確認であるが, 現状, MWSTAGE-2020-10_osx-3.zipをダウンロードし, Tools以下のフォルダを, 最新SDKのTools以下にコピーされることを, dotFilesでは想定している. 
+
+---
+
 ## プロジェクト作成
 
 新規プロジェクト作成時は、以下のテンプレートを利用する。
@@ -88,7 +99,7 @@ make cleanall
 また、テンプレートにはビルド補助スクリプトを配置している。
 
 ```text
-scripts/
+scripts/build.sh
 ```
 
 通常はこちらを利用する。
@@ -114,7 +125,7 @@ TWELITE 環境では `compiledb` を利用すること。
 テンプレートには生成用スクリプトを配置している。
 
 ```text
-scripts/
+scripts/gen_compile_db.sh
 ```
 
 通常はこちらを利用する。
@@ -195,6 +206,38 @@ LLVM 版では条件コンパイルによる無効コードが適切に表示さ
 
 ---
 
+## 書き込み
+
+書き込みには tweterm.pyを使用する. 
+tweterm.pyは, libusbを使用する関係で, FTDIのVCPドライバが稼働していると, USBデバイスにアクセスができない. そこで, tweterm.pyを起動する前に, 
+
+```bash
+sudo kextunload -b com.FTDI.driver.FTDIUSBSerialDriver
+```
+
+により, FTDIのVCPドライバをアンロードする必要がある. 
+tweterm.pyでの書き込みが終わったら, 
+
+```bash
+sudo kextload -b com.FTDI.driver.FTDIUSBSerialDriver
+```
+
+により, 再ロードする. 
+
+また、テンプレートにはビルド補助スクリプトを配置している。
+
+```text
+scripts/flash.sh
+```
+
+通常はこちらを利用する。
+
+### pyftdiのバージョン
+
+tweterm.pyは, 内部のコードが古く, 最新のpyftdiを使うと, 実行エラーになってしまう. どこまで遡ればよいかは未確認であるが, dotFilesでは, 0.30.3を使用することを想定している. 
+
+---
+
 ## Neovim 動作確認
 
 以下が動作することを確認する。
@@ -241,17 +284,6 @@ clangd が正常動作していれば Neovim のみで開発可能である。
 
 ---
 
-## 書き込み
-
-書き込みには TWELITE STAGE を利用する。
-
-TWELITE STAGE は以下を提供する。
-
-* ファームウェア書き込み
-* ターミナル
-* シリアルモニタ
-
----
 
 ## Brewfile
 
@@ -261,6 +293,18 @@ TWELITE 開発で追加した主なパッケージ。
 brew "compiledb"
 brew "llvm"
 ```
+
+## python
+
+tweterm.pyが非常に古いことから, pythonとしては少し古めの3.11.15を指定している. templateの.python_versionにて記載がある. 
+pyftdiとpyserialが必要であり, pyftdiは特に古いものを使わなければならないことから, venvによる仮想環境構築を前提としている. 
+templateの.envrc内で仮想環境の作成はしているが, 初回一度だけ, 
+```bash
+pip install -r requirements.txt
+```
+
+を実施する必要がある. 
+以降は, direnvの効果により, ディレクトリにいる限りは, 仮想環境が起動する. 
 
 ---
 

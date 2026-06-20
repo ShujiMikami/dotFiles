@@ -1,0 +1,2 @@
+pyftdi==0.30.3
+pyserial

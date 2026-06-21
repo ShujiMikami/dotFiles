@@ -13,3 +13,5 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.modeline = false
+
+vim.opt.splitright = true

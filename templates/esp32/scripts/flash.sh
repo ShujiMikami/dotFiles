@@ -2,4 +2,4 @@
 
 set -e
 
-idf.py flash
+python "$IDF_PATH/tools/idf.py" flash
